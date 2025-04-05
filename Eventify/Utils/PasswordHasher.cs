@@ -1,21 +1,14 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
+using System;
 
-namespace Eventify.Utils
+public static class PasswordHasher
 {
-    public static class PasswordHasher
+    public static string Hash(string input)
     {
-        public static string Hash(string password)
-        {
-            using var sha256 = SHA256.Create();
-            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-        }
-
-        public static bool Verify(string password, string hashedPassword)
-        {
-            return Hash(password) == hashedPassword;
-        }
+        using var sha = SHA256.Create();
+        var bytes = Encoding.UTF8.GetBytes(input);
+        var hash = sha.ComputeHash(bytes);
+        return Convert.ToBase64String(hash);
     }
 }

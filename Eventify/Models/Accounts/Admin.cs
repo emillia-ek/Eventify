@@ -1,23 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Eventify.Enums;
+﻿using Eventify.Models.Accounts;
+using System;
 
-namespace Eventify.Models.Accounts
+public class Admin : User
 {
-    public class Admin : User
-    {
-        public Admin(string username, string password) : base(username, password)
-        {
-            Role = Role.Admin;
-        }
+    public Admin(string username) : base(username, "Admin") { }
 
-        public override bool HasPermission(Permission permission)
-        {
-            // Admin ma zawsze wszystkie uprawnienia
-            return true;
-        }
+    public override void DisplayMenu()
+    {
+        Console.WriteLine("Admin Menu:\n1. Dodaj wydarzenie\n2. Usuń wydarzenie\n3. Wyświetl logi\n4. Wyloguj");
     }
 }

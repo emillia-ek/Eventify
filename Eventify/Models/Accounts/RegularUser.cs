@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Eventify.Enums;
+﻿using Eventify.Models.Accounts;
+using System;
 
-namespace Eventify.Models.Accounts
+public class RegularUser : User
 {
-    public class RegularUser : User
-    {
-        public RegularUser(string username, string password) : base(username, password)
-        {
-            Role = Role.User;
-        }
+    public RegularUser(string username) : base(username, "User") { }
 
-        public override bool HasPermission(Permission permission)
-        {
-            if (permission == Permission.ViewEvents ||
-                permission == Permission.MakeReservations)
-            {
-                return true;
-            }
-            return false;
-        }
+    public override void DisplayMenu()
+    {
+        Console.WriteLine("User Menu:\n1. Przeglądaj wydarzenia\n2. Zarezerwuj miejsce\n3. Wyloguj");
     }
 }

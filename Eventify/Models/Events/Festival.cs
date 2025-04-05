@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Eventify.Models.Events
 {
     public class Festival : Event
     {
-        public List<string> Attractions { get; set; }
-        public int NumberOfStages { get; set; }
+        public int DurationDays { get; set; }
 
-        public Festival(string name, string description, DateTime startDate,
-                        DateTime endDate, string location, int capacity,
-                        List<string> attractions, int numberOfStages)
-            : base(name, description, startDate, endDate, location, capacity)
+        public Festival(string title, string location, DateTime date, int duration)
+            : base(title, location, date)
         {
-            Attractions = attractions;
-            NumberOfStages = numberOfStages;
+            DurationDays = duration;
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine($"🎉 Festiwal: {Title}, {DurationDays} dni @ {Location}, {Date:d}");
         }
     }
 }

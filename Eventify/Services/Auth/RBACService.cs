@@ -1,22 +1,14 @@
-﻿using System;
-using Eventify.Enums;
-using Eventify.Models.Accounts;
+﻿using Eventify.Models.Accounts;
 
-namespace Eventify.Services.Auth
+public static class RBACService
 {
-    public class RBACService
+    public static User CreateUserByRole(string username, string role)
     {
-        public bool CheckPermission(User user, Permission requiredPermission)
+        return role switch
         {
-            return user.HasPermission(requiredPermission);
-        }
-
-        public void ValidateRoleAccess(User user, Role requiredRole)
-        {
-            if (user.Role < requiredRole)
-            {
-                throw new UnauthorizedAccessException("Insufficient privileges");
-            }
-        }
+            "Admin" => new Admin(username),
+            "Manager" => new Manager(username),
+            _ => new RegularUser(username),
+        };
     }
 }

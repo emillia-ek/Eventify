@@ -1,29 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Eventify.Enums;
+﻿using Eventify.Models.Accounts;
+using System;
 
-namespace Eventify.Models.Accounts
+public class Manager : User
 {
-    public class Manager : User
-    {
-        public Manager(string username, string password) : base(username, password)
-        {
-            Role = Role.Manager;
-        }
+    public Manager(string username) : base(username, "Manager") { }
 
-        public override bool HasPermission(Permission permission)
-        {
-            if (permission == Permission.ViewEvents ||
-                permission == Permission.MakeReservations ||
-                permission == Permission.ManageEvents ||
-                permission == Permission.ViewReports)
-            {
-                return true;
-            }
-            return false;
-        }
+    public override void DisplayMenu()
+    {
+        Console.WriteLine("Manager Menu:\n1. Dodaj wydarzenie\n2. Wyświetl wydarzenia\n3. Wyloguj");
     }
 }
