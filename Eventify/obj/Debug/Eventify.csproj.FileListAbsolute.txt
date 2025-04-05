@@ -1,0 +1,2 @@
+C:\Users\Emilia\Desktop\Eventify\obj\Debug\Eventify.csproj.AssemblyReference.cache
+C:\Users\Emilia\Desktop\Eventify\obj\Debug\Eventify.csproj.CoreCompileInputs.cache

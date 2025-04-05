@@ -1,0 +1,341 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Emilia\\Desktop\\Eventify\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|c:\\users\\emilia\\desktop\\eventify\\services\\reservations\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:services\\reservations\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Events\\EventSearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Services\\Events\\EventSearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Events\\EventService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Services\\Events\\EventService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Accounts\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Auth\\AuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Services\\Auth\\AuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Utils\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Utils\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\LoggerService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Services\\LoggerService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Auth\\RBACService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Services\\Auth\\RBACService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Utils\\FileHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Utils\\FileHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Enums\\Permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Enums\\Permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Enums\\Role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Enums\\Role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Festival.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Events\\Festival.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\Manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Accounts\\Manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\Admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Accounts\\Admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\RegularUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Accounts\\RegularUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Conference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Events\\Conference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Concert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Events\\Concert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Models\\Events\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|C:\\Users\\Emilia\\Desktop\\Eventify\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ACE74B0-8756-473C-BAB2-395982E1D8AC}|Eventify.csproj|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EventSearch.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Events\\EventSearch.cs",
+              "RelativeDocumentMoniker": "Services\\Events\\EventSearch.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Events\\EventSearch.cs",
+              "RelativeToolTip": "Services\\Events\\EventSearch.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:40:58.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EventService.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Events\\EventService.cs",
+              "RelativeDocumentMoniker": "Services\\Events\\EventService.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Events\\EventService.cs",
+              "RelativeToolTip": "Services\\Events\\EventService.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAEMAAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:34:46.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Reservations\\ReservationService.cs",
+              "RelativeDocumentMoniker": "Services\\Reservations\\ReservationService.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Reservations\\ReservationService.cs",
+              "RelativeToolTip": "Services\\Reservations\\ReservationService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAYwAYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:35:43.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\User.cs",
+              "RelativeDocumentMoniker": "Models\\Accounts\\User.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\User.cs",
+              "RelativeToolTip": "Models\\Accounts\\User.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwBcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:20:23.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Auth\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\Auth\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Auth\\AuthService.cs",
+              "RelativeToolTip": "Services\\Auth\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:34:03.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Utils\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "Utils\\PasswordHasher.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Utils\\PasswordHasher.cs",
+              "RelativeToolTip": "Utils\\PasswordHasher.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAWwAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:36:50.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoggerService.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\LoggerService.cs",
+              "RelativeDocumentMoniker": "Services\\LoggerService.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\LoggerService.cs",
+              "RelativeToolTip": "Services\\LoggerService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAkwBwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:36:11.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RBACService.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Auth\\RBACService.cs",
+              "RelativeDocumentMoniker": "Services\\Auth\\RBACService.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Services\\Auth\\RBACService.cs",
+              "RelativeToolTip": "Services\\Auth\\RBACService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:40:09.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FileHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Utils\\FileHelper.cs",
+              "RelativeDocumentMoniker": "Utils\\FileHelper.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Utils\\FileHelper.cs",
+              "RelativeToolTip": "Utils\\FileHelper.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:37:22.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Permission.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Enums\\Permission.cs",
+              "RelativeDocumentMoniker": "Enums\\Permission.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Enums\\Permission.cs",
+              "RelativeToolTip": "Enums\\Permission.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:25:53.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Enums\\Role.cs",
+              "RelativeDocumentMoniker": "Enums\\Role.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Enums\\Role.cs",
+              "RelativeToolTip": "Enums\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:25:26.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "Models\\Reservation.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Reservation.cs",
+              "RelativeToolTip": "Models\\Reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:24:32.473Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Festival.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Festival.cs",
+              "RelativeDocumentMoniker": "Models\\Events\\Festival.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Festival.cs",
+              "RelativeToolTip": "Models\\Events\\Festival.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAYwAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:24:00.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Manager.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\Manager.cs",
+              "RelativeDocumentMoniker": "Models\\Accounts\\Manager.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\Manager.cs",
+              "RelativeToolTip": "Models\\Accounts\\Manager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:21:28.343Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\Admin.cs",
+              "RelativeDocumentMoniker": "Models\\Accounts\\Admin.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\Admin.cs",
+              "RelativeToolTip": "Models\\Accounts\\Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:21:07.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "RegularUser.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\RegularUser.cs",
+              "RelativeDocumentMoniker": "Models\\Accounts\\RegularUser.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Accounts\\RegularUser.cs",
+              "RelativeToolTip": "Models\\Accounts\\RegularUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:21:55.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Conference.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Conference.cs",
+              "RelativeDocumentMoniker": "Models\\Events\\Conference.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Conference.cs",
+              "RelativeToolTip": "Models\\Events\\Conference.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:23:34.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Concert.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Concert.cs",
+              "RelativeDocumentMoniker": "Models\\Events\\Concert.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Concert.cs",
+              "RelativeToolTip": "Models\\Events\\Concert.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:23:06.472Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Event.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Event.cs",
+              "RelativeDocumentMoniker": "Models\\Events\\Event.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Models\\Events\\Event.cs",
+              "RelativeToolTip": "Models\\Events\\Event.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T19:22:38.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Emilia\\Desktop\\Eventify\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Emilia\\Desktop\\Eventify\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T18:34:20.765Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
