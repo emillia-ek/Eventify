@@ -42,12 +42,19 @@ namespace Eventify.Services.Auth
 
         private User CreateUserInstance(string username, string hashedPassword, string role)
         {
-            return role.ToLower() switch
+            var lowerRole = role.ToLower();
+            if (lowerRole == "admin")
             {
-                "admin" => new Admin(username, hashedPassword),
-                "manager" => new Manager(username, hashedPassword),
-                _ => new RegularUser(username, hashedPassword)
-            };
+                return new Admin(username, hashedPassword);
+            }
+            else if (lowerRole == "manager")
+            {
+                return new Manager(username, hashedPassword);
+            }
+            else
+            {
+                return new RegularUser(username, hashedPassword);
+            }
         }
     }
 }

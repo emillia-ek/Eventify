@@ -6,5 +6,10 @@ using System.Threading.Tasks;
 
 namespace Eventify
 {
-    class Program {}
+    internal class Program {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Teraz mam jawny Main!");
+        }
+    }
 }
