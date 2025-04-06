@@ -1,0 +1,7 @@
+C:\Users\emili\OneDrive\Dokumenty\Eventify\bin\Debug\Eventify.exe.config
+C:\Users\emili\OneDrive\Dokumenty\Eventify\bin\Debug\Eventify.exe
+C:\Users\emili\OneDrive\Dokumenty\Eventify\bin\Debug\Eventify.pdb
+C:\Users\emili\OneDrive\Dokumenty\Eventify\obj\Debug\Eventify.csproj.AssemblyReference.cache
+C:\Users\emili\OneDrive\Dokumenty\Eventify\obj\Debug\Eventify.csproj.CoreCompileInputs.cache
+C:\Users\emili\OneDrive\Dokumenty\Eventify\obj\Debug\Eventify.exe
+C:\Users\emili\OneDrive\Dokumenty\Eventify\obj\Debug\Eventify.pdb
