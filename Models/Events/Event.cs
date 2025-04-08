@@ -16,6 +16,7 @@ namespace Eventify.Models.Events
         public string Description { get; set; }
         public int MaxParticipants { get; set; }
         public decimal Price { get; set; }
+        public abstract string EventType { get; }
 
         protected Event(int id, string name, DateTime startDate, DateTime endDate,
                       string location, string description, int maxParticipants, decimal price)

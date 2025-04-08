@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Eventify.Models.Events;
 using System.IO;
+using System.Text.Json;
 
 namespace Eventify.Services.Events
 {
@@ -39,10 +40,10 @@ namespace Eventify.Services.Events
 
         public bool DeleteEvent(int id)
         {
-            var eventToRemove = _events.FirstOrDefault(e => e.Id == id);
-            if (eventToRemove != null)
+            var toRemove = _events.FirstOrDefault(e => e.Id == id);
+            if (toRemove != null)
             {
-                _events.Remove(eventToRemove);
+                _events.Remove(toRemove);
                 SaveEvents();
                 return true;
             }
@@ -51,33 +52,71 @@ namespace Eventify.Services.Events
 
         private void LoadEvents()
         {
-            if (File.Exists(EventsFilePath))
+            if (!File.Exists(EventsFilePath)) return;
+
+            try
             {
-                try
+                string json = File.ReadAllText(EventsFilePath);
+                List<JsonElement> rawEvents = JsonSerializer.Deserialize<List<JsonElement>>(json);
+
+                foreach (JsonElement item in rawEvents)
                 {
-                    string json = File.ReadAllText(EventsFilePath);
-                    // Tutaj należy dodać deserializację JSON do listy wydarzeń
-                    // W uproszczonej wersji możemy zostawić pustą implementację
+                    string type = item.GetProperty("EventType").GetString();
+                    Event ev = null;
+
+                    switch (type)
+                    {
+                        case "Concert":
+                            ev = JsonSerializer.Deserialize<Concert>(item.GetRawText());
+                            break;
+                        case "Conference":
+                            ev = JsonSerializer.Deserialize<Conference>(item.GetRawText());
+                            break;
+                        default:
+                            Console.WriteLine("Nieznany typ wydarzenia: " + type);
+                            break;
+                    }
+
+                    if (ev != null)
+                    {
+                        _events.Add(ev);
+                    }
                 }
-                catch (Exception ex)
+
+                if (_events.Count > 0)
                 {
-                    Console.WriteLine($"Błąd podczas wczytywania wydarzeń: {ex.Message}");
+                    _nextId = _events.Max(e => e.Id) + 1;
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Błąd podczas wczytywania wydarzeń: " + ex.Message);
+            }
         }
+
 
         private void SaveEvents()
         {
             try
             {
-                // Tutaj należy dodać serializację listy wydarzeń do JSON
-                // W uproszczonej wersji możemy zostawić pustą implementację
-                File.WriteAllText(EventsFilePath, "[]");
+                // Odczytanie istniejących danych, jeśli plik już istnieje
+                List<Event> allEvents = new List<Event>();
+                if (File.Exists(EventsFilePath))
+                {
+                    string existingJson = File.ReadAllText(EventsFilePath);
+                    allEvents = JsonSerializer.Deserialize<List<Event>>(existingJson) ?? new List<Event>();
+                }
+                allEvents.AddRange(_events);
+
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                var json = JsonSerializer.Serialize(allEvents, options);
+                File.WriteAllText(EventsFilePath, json);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Błąd podczas zapisywania wydarzeń: {ex.Message}");
+                Console.WriteLine($"Błąd zapisu wydarzeń: {ex.Message}");
             }
         }
+
     }
 }

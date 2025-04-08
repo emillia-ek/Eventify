@@ -8,6 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eventify.Services.Reservations;
+using Eventify.Models.Events;
+
 
 class Program
 {
@@ -17,6 +20,8 @@ class Program
     private static User _currentUser;
     private static EventService _eventService = new EventService();
     private static EventConsoleUI _eventConsoleUI = new EventConsoleUI(_eventService);
+    private static ReservationService _reservationService = new ReservationService();
+
 
     static void Main()
     {
@@ -231,28 +236,53 @@ class Program
                 return;
             }
 
-            _currentUser.DisplayDashboard();
+            ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
+            Console.WriteLine("1. Przeglądaj wydarzenia");
+            Console.WriteLine("2. Zarezerwuj wydarzenie");
+            Console.WriteLine("3. Moje rezerwacje");
+            Console.WriteLine("4. Wyloguj się");
             Console.Write("\nWybierz opcję: ");
+
             var choice = Console.ReadLine();
 
-            if (_currentUser.Role == "Manager" && choice == "1")
+            switch (choice)
             {
-                _eventConsoleUI.ShowEventManagementMenu();
-            }
-            else if (choice == "2") // Przeglądanie wydarzeń
-            {
-                _eventConsoleUI.DisplayAllEvents();
-            }
-            else if (choice == "3") // Wyloguj
-            {
-                _currentUser = null;
-                return;
-            }
-            else
-            {
-                ConsoleHelper.PrintError("Nieprawidłowy wybór lub brak uprawnień!");
-                Console.ReadKey();
+                case "1":
+                    _eventConsoleUI.DisplayAllEvents();
+                    break;
+
+                case "2":
+                    _eventConsoleUI.DisplayAllEvents();
+                    Console.Write("\nPodaj ID wydarzenia do rezerwacji: ");
+                    var input = Console.ReadLine();
+
+                    if (int.TryParse(input, out var eventId))
+                    {
+                        _reservationService.Reserve(_currentUser.Username, eventId);
+                    }
+                    else
+                    {
+                        ConsoleHelper.PrintError("Nieprawidłowy format ID.");
+                    }
+
+                    Console.ReadKey();
+                    break;
+
+                case "3":
+                    _reservationService.ShowUserReservations(_currentUser.Username);
+                    Console.ReadKey();
+                    break;
+
+                case "4":
+                    _currentUser = null;
+                    return;
+
+                default:
+                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
+                    Console.ReadKey();
+                    break;
             }
         }
     }
+
 }

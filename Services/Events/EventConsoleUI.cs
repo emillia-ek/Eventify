@@ -129,16 +129,16 @@ namespace Eventify.Services.Events
         public void DisplayAllEvents()
         {
             Console.Clear();
-            Console.WriteLine("=== LISTA WYDARZEŃ ===");
+            Console.WriteLine("=== LISTA WYDARZEŃ ===\n");
 
-            var events = _eventService.GetAllEvents();
-            if (events.Count == 0)
+            List<Event> events = _eventService.GetAllEvents();
+            if (events == null || events.Count == 0)
             {
                 Console.WriteLine("Brak dostępnych wydarzeń.");
             }
             else
             {
-                foreach (var ev in events)
+                foreach (Event ev in events)
                 {
                     Console.WriteLine(new string('-', 50));
                     ev.DisplayEventDetails();
@@ -148,6 +148,7 @@ namespace Eventify.Services.Events
             Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
             Console.ReadKey();
         }
+
 
         private void DeleteEvent()
         {

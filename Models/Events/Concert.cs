@@ -10,6 +10,7 @@ namespace Eventify.Models.Events
     {
         public string Artist { get; set; }
         public string MusicGenre { get; set; }
+        public override string EventType => "Concert";
 
         public Concert(int id, string name, DateTime startDate, DateTime endDate,
                      string location, string description, int maxParticipants,
@@ -22,7 +23,8 @@ namespace Eventify.Models.Events
 
         public override void DisplayEventDetails()
         {
-            Console.WriteLine($"KONCERT: {Name}");
+            Console.WriteLine($"Id: {Id}");
+            Console.WriteLine($"KONCERT: {Name}"); 
             Console.WriteLine($"Wykonawca: {Artist}");
             Console.WriteLine($"Gatunek muzyczny: {MusicGenre}");
             Console.WriteLine($"Data: {StartDate.ToShortDateString()} {StartDate.ToShortTimeString()} - {EndDate.ToShortTimeString()}");

@@ -10,6 +10,7 @@ namespace Eventify.Models.Events
     {
         public string Theme { get; set; }
         public string[] Speakers { get; set; }
+        public override string EventType => "Conference";
 
         public Conference(int id, string name, DateTime startDate, DateTime endDate,
                          string location, string description, int maxParticipants,
@@ -22,6 +23,7 @@ namespace Eventify.Models.Events
 
         public override void DisplayEventDetails()
         {
+            Console.WriteLine($"Id: {Id}");
             Console.WriteLine($"KONFERENCJA: {Name}");
             Console.WriteLine($"Temat: {Theme}");
             Console.WriteLine("Prelegenci:");

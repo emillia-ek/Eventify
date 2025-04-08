@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "Id": 1,
+    "Name": "sss",
+    "StartDate": "2009-12-12T12:00:00",
+    "EndDate": "2010-12-21T13:00:00",
+    "Location": "war",
+    "Description": "br",
+    "MaxParticipants": 5,
+    "Price": 34,
+    "EventType": "Concert"
+  }
+]
