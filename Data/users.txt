@@ -1,3 +1,0 @@
-admin|5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8|Admin|admin@example.com
-manager|5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8|Manager|manager@example.com
-user|5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8|User|user@example.com
