@@ -24,9 +24,9 @@ namespace Eventify.Models.Events
         public override void DisplayEventDetails()
         {
             Console.WriteLine($"Id: {Id}");
-            Console.WriteLine($"KONCERT: {Name}"); 
-            Console.WriteLine($"Wykonawca: {Artist}");
-            Console.WriteLine($"Gatunek muzyczny: {MusicGenre}");
+            Console.WriteLine($"KONCERT: {Name}");
+            Console.WriteLine($"Wykonawca: {Artist ?? "brak danych"}");
+            Console.WriteLine($"Gatunek muzyczny: {MusicGenre ?? "brak danych"}");
             Console.WriteLine($"Data: {StartDate.ToShortDateString()} {StartDate.ToShortTimeString()} - {EndDate.ToShortTimeString()}");
             Console.WriteLine($"Miejsce: {Location}");
             Console.WriteLine($"Cena: {Price:C}");

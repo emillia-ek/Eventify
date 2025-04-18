@@ -13,7 +13,7 @@ namespace Eventify.Services.Events
     {
         private const string EventsFilePath = "Data/events.json";
         private List<Event> _events;
-        private int _nextId = 1;
+        private int _nextId;
 
         public EventService()
         {
@@ -23,20 +23,37 @@ namespace Eventify.Services.Events
 
         public void AddEvent(Event newEvent)
         {
-            newEvent.Id = _nextId++;
+            if (newEvent == null)
+                throw new ArgumentNullException(nameof(newEvent));
+
+            // Jeśli newEvent.Id jest już ustawione (np. podczas edycji), sprawdź, czy nie koliduje
+            if (newEvent.Id != 0 && _events.Any(e => e.Id == newEvent.Id))
+            {
+                throw new InvalidOperationException($"Wydarzenie o ID {newEvent.Id} już istnieje.");
+            }
+
+            if (newEvent.Id == 0)
+            {
+                newEvent.Id = _nextId++;
+            }
+
             _events.Add(newEvent);
             SaveEvents();
         }
 
         public List<Event> GetAllEvents()
         {
-            return _events.OrderBy(e => e.StartDate).ToList();
+            return _events?
+            .GroupBy(e => e.Id).Select(g => g.First())
+            .OrderBy(e => e.StartDate)
+            .ToList() ?? new List<Event>();
         }
 
         public Event GetEventById(int id)
         {
             return _events.FirstOrDefault(e => e.Id == id);
         }
+
 
         public bool DeleteEvent(int id)
         {
@@ -50,47 +67,55 @@ namespace Eventify.Services.Events
             return false;
         }
 
-        private void LoadEvents()
+        public void LoadEvents()
         {
-            if (!File.Exists(EventsFilePath)) return;
-
-            try
+            if (File.Exists(EventsFilePath))
             {
-                string json = File.ReadAllText(EventsFilePath);
-                List<JsonElement> rawEvents = JsonSerializer.Deserialize<List<JsonElement>>(json);
-
-                foreach (JsonElement item in rawEvents)
+                try
                 {
-                    string type = item.GetProperty("EventType").GetString();
-                    Event ev = null;
+                    string json = File.ReadAllText(EventsFilePath);
+                    List<JsonElement> rawEvents = JsonSerializer.Deserialize<List<JsonElement>>(json); // Deserialize to JsonElement list
 
-                    switch (type)
+                    _events.Clear();
+
+                    foreach (var item in rawEvents)
                     {
-                        case "Concert":
-                            ev = JsonSerializer.Deserialize<Concert>(item.GetRawText());
-                            break;
-                        case "Conference":
-                            ev = JsonSerializer.Deserialize<Conference>(item.GetRawText());
-                            break;
-                        default:
-                            Console.WriteLine("Nieznany typ wydarzenia: " + type);
-                            break;
+                        string eventType = item.GetProperty("EventType").GetString();
+
+                        Event ev = null;
+                        switch (eventType)
+                        {
+                            case "Concert":
+                                ev = JsonSerializer.Deserialize<Concert>(item.GetRawText());
+                                break;
+                            case "Conference":
+                                ev = JsonSerializer.Deserialize<Conference>(item.GetRawText());
+                                break;
+                            default:
+                                Console.WriteLine($"Nieznany typ wydarzenia: {eventType}");
+                                break;
+                        }
+
+                        if (ev != null)
+                        {
+                            _events.Add(ev);
+                        }
                     }
 
-                    if (ev != null)
+                    // After loading events, set _nextId to the highest Id + 1
+                    if (_events.Count > 0)
                     {
-                        _events.Add(ev);
+                        _nextId = _events.Max(e => e.Id) + 1;
+                    }
+                    else
+                    {
+                        _nextId = 1; // Start from 1 if no events are loaded
                     }
                 }
-
-                if (_events.Count > 0)
+                catch (Exception ex)
                 {
-                    _nextId = _events.Max(e => e.Id) + 1;
+                    Console.WriteLine("Błąd podczas wczytywania wydarzeń: " + ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Błąd podczas wczytywania wydarzeń: " + ex.Message);
             }
         }
 
@@ -99,17 +124,9 @@ namespace Eventify.Services.Events
         {
             try
             {
-                // Odczytanie istniejących danych, jeśli plik już istnieje
-                List<Event> allEvents = new List<Event>();
-                if (File.Exists(EventsFilePath))
-                {
-                    string existingJson = File.ReadAllText(EventsFilePath);
-                    allEvents = JsonSerializer.Deserialize<List<Event>>(existingJson) ?? new List<Event>();
-                }
-                allEvents.AddRange(_events);
-
+                var uniqueEvents = _events.GroupBy(e => e.Id).Select(g => g.First()).ToList();
                 var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(allEvents, options);
+                var json = JsonSerializer.Serialize(uniqueEvents, options);
                 File.WriteAllText(EventsFilePath, json);
             }
             catch (Exception ex)
@@ -117,6 +134,5 @@ namespace Eventify.Services.Events
                 Console.WriteLine($"Błąd zapisu wydarzeń: {ex.Message}");
             }
         }
-
     }
 }

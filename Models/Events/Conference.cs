@@ -12,6 +12,15 @@ namespace Eventify.Models.Events
         public string[] Speakers { get; set; }
         public override string EventType => "Conference";
 
+        // Bezparametrowy konstruktor potrzebny do deserializacji
+        public Conference()
+    : base(0, "", DateTime.MinValue, DateTime.MinValue, "", "", 0, 0)
+        {
+            Theme = string.Empty;
+            Speakers = Array.Empty<string>();
+        }
+
+
         public Conference(int id, string name, DateTime startDate, DateTime endDate,
                          string location, string description, int maxParticipants,
                          decimal price, string theme, string[] speakers)
@@ -25,17 +34,27 @@ namespace Eventify.Models.Events
         {
             Console.WriteLine($"Id: {Id}");
             Console.WriteLine($"KONFERENCJA: {Name}");
-            Console.WriteLine($"Temat: {Theme}");
+            Console.WriteLine($"Temat: {Theme ?? "brak danych"}");
+
             Console.WriteLine("Prelegenci:");
-            foreach (var speaker in Speakers)
+            if (Speakers != null && Speakers.Any())
             {
-                Console.WriteLine($"- {speaker}");
+                foreach (var speaker in Speakers)
+                {
+                    Console.WriteLine($"- {speaker}");
+                }
             }
-            Console.WriteLine($"Data: {StartDate.ToShortDateString()} - {EndDate.ToShortDateString()}");
+            else
+            {
+                Console.WriteLine("Brak prelegentów.");
+            }
+
+            Console.WriteLine($"Data: {StartDate:dd.MM.yyyy HH:mm} - {EndDate:HH:mm}");
             Console.WriteLine($"Miejsce: {Location}");
             Console.WriteLine($"Cena: {Price:C}");
             Console.WriteLine($"Liczba miejsc: {MaxParticipants}");
             Console.WriteLine($"Opis: {Description}");
         }
     }
+
 }
