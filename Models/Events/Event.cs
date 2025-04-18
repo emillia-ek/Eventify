@@ -29,6 +29,7 @@ namespace Eventify.Models.Events
             Description = description;
             MaxParticipants = maxParticipants;
             Price = price;
+            
         }
 
         public abstract void DisplayEventDetails();

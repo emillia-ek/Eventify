@@ -6,10 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Eventify.Services.Reservations;
 using Eventify.Models.Events;
+using Figgle;
+using Spectre.Console;
 
 
 class Program
@@ -26,6 +27,7 @@ class Program
     static void Main()
     {
         Console.Title = "Eventify - System Zarządzania Wydarzeniami";
+        Console.CursorVisible = false;
         ShowMainMenu();
     }
 
@@ -33,105 +35,154 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("WITAMY W SYSTEMIE EVENTIFY");
-            Console.WriteLine("1. Zaloguj się");
-            Console.WriteLine("2. Zarejestruj się");
-            Console.WriteLine("3. Wyjdź");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]EVENTIFY[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            AnsiConsole.Write(
+                new Panel(FiggleFonts.Standard.Render("EVENTIFY")).Border(BoxBorder.None)); //aligny nie dzialaja
+
+            AnsiConsole.MarkupLine("[grey]System zarządzania wydarzeniami[/]\n");
+
+            
+            AnsiConsole.WriteLine();
+            AnsiConsole.WriteLine();
+
+            var menu = new SelectionPrompt<string>()
+                .Title("[red]Wybierz opcję:[/]")
+                .PageSize(3)
+                .AddChoices(new[] {
+                    "Zaloguj się",
+                    "Zarejestruj się",
+                    "Wyjdź"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
             switch (choice)
             {
-                case "1":
+                case "Zaloguj się":
                     Login();
                     break;
-                case "2":
+                case "Zarejestruj się":
                     Register();
                     break;
-                case "3":
+                case "Wyjdź":
+                    AnsiConsole.MarkupLine("[grey]Do zobaczenia![/]");
                     Environment.Exit(0);
                     break;
+
                 default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór. Spróbuj ponownie.");
+                    AnsiConsole.MarkupLine("[red]Nieprawidłowy wybór. Spróbuj ponownie.[/]");
                     break;
             }
+
         }
+
     }
 
     static void Login()
     {
-        ConsoleHelper.PrintHeader("LOGOWANIE");
-        Console.Write("Nazwa użytkownika: ");
-        var username = Console.ReadLine() ?? "";
-        Console.Write("Hasło: ");
-        var password = ConsoleHelper.ReadPassword();
+
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]LOGOWANIE[/]").RuleStyle("grey").Centered());
+
+        var username = AnsiConsole.Ask<string>("[yellow]Nazwa użytkownika:[/] ");
+        var password = AnsiConsole.Prompt(
+            new TextPrompt<string>("[yellow]Hasło:[/] ")
+                .PromptStyle("red")
+                .Secret());
 
         _currentUser = _authService.Login(username, password);
 
         if (_currentUser != null)
         {
-            ConsoleHelper.PrintSuccess($"Zalogowano pomyślnie jako {_currentUser.Role}!");
+            AnsiConsole.MarkupLine($"[green]Zalogowano pomyślnie jako {_currentUser.Role}![/]");
             Console.ReadKey();
             ShowUserDashboard();
         }
         else
         {
-            ConsoleHelper.PrintError("Nieprawidłowa nazwa użytkownika lub hasło.");
+            AnsiConsole.MarkupLine("[red]Nieprawidłowa nazwa użytkownika lub hasło.[/]");
             Console.ReadKey();
         }
+
+       
     }
 
     static void Register()
     {
-        ConsoleHelper.PrintHeader("REJESTRACJA");
-        Console.Write("Nazwa użytkownika: ");
-        var username = Console.ReadLine() ?? "";
-        Console.Write("Email: ");
-        var email = Console.ReadLine() ?? "";
-        Console.Write("Hasło: ");
-        var password = ConsoleHelper.ReadPassword();
-        Console.Write("Potwierdź hasło: ");
-        var confirmPassword = ConsoleHelper.ReadPassword();
+
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]REJESTRACJA[/]").RuleStyle("grey").Centered());
+
+        var username = AnsiConsole.Ask<string>("[yellow]Nazwa użytkownika:[/] ");
+        var email = AnsiConsole.Ask<string>("[yellow]Email:[/] ");
+
+        var password = AnsiConsole.Prompt(
+            new TextPrompt<string>("[yellow]Hasło:[/] ")
+                .PromptStyle("red")
+                .Secret());
+
+        var confirmPassword = AnsiConsole.Prompt(
+            new TextPrompt<string>("[yellow]Potwierdź hasło:[/] ")
+                .PromptStyle("red")
+                .Secret());
+
+
 
         if (password != confirmPassword)
         {
-            ConsoleHelper.PrintError("Hasła nie są identyczne!");
+            AnsiConsole.MarkupLine("[red]Hasła nie są identyczne![/]");
             Console.ReadKey();
             return;
         }
 
         if (_authService.Register(username, password, email))
         {
-            ConsoleHelper.PrintSuccess("Rejestracja zakończona pomyślnie! Możesz się teraz zalogować.");
+            AnsiConsole.MarkupLine("[green]Rejestracja zakończona pomyślnie! Możesz się teraz zalogować.[/]");
             Console.ReadKey();
         }
+        else
+        {
+            AnsiConsole.MarkupLine("[red]Rejestracja nie powiodła się. Użytkownik może już istnieć.[/]");
+            Console.ReadKey();
+        }
+
+
+      
     }
     static void ShowAdminMenu()
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("PANEL ADMINISTRATORA");
-            Console.WriteLine("1. Zarządzaj użytkownikami");
-            Console.WriteLine("2. Zarządzaj wydarzeniami");
-            Console.WriteLine("3. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]PANEL ADMINISTRATORA[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(4)
+                .AddChoices(new[] {
+                    "Zarządzaj użytkownikami",
+                    "Zarządzaj wydarzeniami",
+                    "Wyloguj się"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
             switch (choice)
             {
-                case "1":
+                case "Zarządzaj użytkownikami":
                     ShowUserManagementMenu();
                     break;
-                case "2":
+                case "Zarządzaj wydarzeniami":
                     _eventConsoleUI.ShowEventManagementMenu();
                     break;
-                case "3":
+                case "Wyloguj się":
+                    _currentUser = null;
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
+
+           
         }
     }
 
@@ -139,86 +190,100 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("ZARZĄDZANIE UŻYTKOWNIKAMI");
-            Console.WriteLine("1. Wyświetl wszystkich użytkowników");
-            Console.WriteLine("2. Usuń użytkownika");
-            Console.WriteLine("3. Powrót");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]ZARZĄDZANIE UŻYTKOWNIKAMI[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(4)
+                .AddChoices(new[] {
+                    "Wyświetl wszystkich użytkowników",
+                    "Usuń użytkownika",
+                    "Powrót"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
             switch (choice)
             {
-                case "1":
+                case "Wyświetl wszystkich użytkowników":
                     DisplayAllUsers();
                     break;
-                case "2":
+                case "Usuń użytkownika":
                     DeleteUser();
                     break;
-                case "3":
+                case "Powrót":
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }
 
     static void DisplayAllUsers()
     {
-        ConsoleHelper.PrintHeader("LISTA UŻYTKOWNIKÓW");
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]LISTA UŻYTKOWNIKÓW[/]").RuleStyle("grey").Centered());
 
         try
         {
             if (!File.Exists(UsersFilePath))
             {
-                ConsoleHelper.PrintError("Brak pliku z użytkownikami.");
+                AnsiConsole.MarkupLine("[red]Brak pliku z użytkownikami.[/]");
+                Console.ReadKey();
                 return;
             }
 
-            var lines = File.ReadAllLines(UsersFilePath);
-            foreach (var line in lines)
+            var users = File.ReadAllLines(UsersFilePath)
+                .Select(line => line.Split('|'))
+                .Select(parts => new { Username = parts[0], Role = parts[2], Email = parts[3] });
+
+            var table = new Table();
+            table.AddColumn("Nazwa użytkownika");
+            table.AddColumn("Rola");
+            table.AddColumn("Email");
+
+            foreach (var user in users)
             {
-                var parts = line.Split('|');
-                Console.WriteLine($"Nazwa: {parts[0]}, Rola: {parts[2]}, Email: {parts[3]}");
+                table.AddRow(user.Username, user.Role, user.Email);
             }
+
+            AnsiConsole.Render(table);
         }
         catch (Exception ex)
         {
-            ConsoleHelper.PrintError($"Błąd podczas wczytywania użytkowników: {ex.Message}");
+            AnsiConsole.MarkupLine($"[red]Błąd podczas wczytywania użytkowników: {ex.Message}[/]"); ;
         }
 
-        Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
+        AnsiConsole.MarkupLine("\n[grey]Naciśnij dowolny klawisz, aby kontynuować...[/]");
         Console.ReadKey();
     }
 
     static void DeleteUser()
     {
-        ConsoleHelper.PrintHeader("USUWANIE UŻYTKOWNIKA");
         DisplayAllUsers();
 
-        Console.Write("\nPodaj nazwę użytkownika do usunięcia: ");
-        var username = Console.ReadLine();
+        var username = AnsiConsole.Ask<string>("\n[yellow]Podaj nazwę użytkownika do usunięcia:[/] ");
 
         if (string.IsNullOrWhiteSpace(username))
         {
-            ConsoleHelper.PrintError("Nie podano nazwy użytkownika.");
+            AnsiConsole.MarkupLine("[red]Nie podano nazwy użytkownika.[/]");
+            Console.ReadKey();
             return;
         }
 
         if (username == _currentUser?.Username)
         {
-            ConsoleHelper.PrintError("Nie możesz usunąć swojego własnego konta!");
+            AnsiConsole.MarkupLine("[red]Nie możesz usunąć swojego własnego konta![/]");
+            Console.ReadKey();
             return;
         }
 
         if (_authService.DeleteUser(username))
         {
-            ConsoleHelper.PrintSuccess($"Użytkownik {username} został pomyślnie usunięty.");
+            AnsiConsole.MarkupLine($"[green]Użytkownik {username} został pomyślnie usunięty.[/]");
         }
         else
         {
-            ConsoleHelper.PrintError("Nie udało się usunąć użytkownika.");
+            AnsiConsole.MarkupLine("[red]Nie udało się usunąć użytkownika.[/]");
         }
 
         Console.ReadKey();
@@ -236,51 +301,39 @@ class Program
                 return;
             }
 
-            ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
-            Console.WriteLine("1. Przeglądaj wydarzenia");
-            Console.WriteLine("2. Zarezerwuj wydarzenie");
-            Console.WriteLine("3. Moje rezerwacje");
-            Console.WriteLine("4. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule($"[red]PANEL UŻYTKOWNIKA: {_currentUser.Username}[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(5)
+                .AddChoices(new[] {
+                    "Przeglądaj wydarzenia",
+                    "Zarezerwuj wydarzenie",
+                    "Moje rezerwacje",
+                    "Wyloguj się"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
 
             switch (choice)
             {
-                case "1":
+                case "Przeglądaj wydarzenia":
                     _eventConsoleUI.DisplayAllEvents();
                     break;
-
-                case "2":
+                case "Zarezerwuj wydarzenie":
                     _eventConsoleUI.DisplayAllEvents();
-                    Console.Write("\nPodaj ID wydarzenia do rezerwacji: ");
-                    var input = Console.ReadLine();
-
-                    if (int.TryParse(input, out var eventId))
-                    {
-                        _reservationService.Reserve(_currentUser.Username, eventId);
-                    }
-                    else
-                    {
-                        ConsoleHelper.PrintError("Nieprawidłowy format ID.");
-                    }
-
+                    var eventId = AnsiConsole.Ask<int>("\n[yellow]Podaj ID wydarzenia do rezerwacji:[/] ");
+                    _reservationService.Reserve(_currentUser.Username, eventId);
                     Console.ReadKey();
                     break;
-
-                case "3":
+                case "Moje rezerwacje":
                     _reservationService.ShowUserReservations(_currentUser.Username);
                     Console.ReadKey();
                     break;
-
-                case "4":
+                case "Wyloguj się":
                     _currentUser = null;
                     return;
-
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }

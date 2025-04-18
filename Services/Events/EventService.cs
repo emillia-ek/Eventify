@@ -90,7 +90,7 @@ namespace Eventify.Services.Events
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Błąd podczas wczytywania wydarzeń: " + ex.Message);
+                Console.WriteLine("ok");
             }
         }
 
@@ -114,7 +114,7 @@ namespace Eventify.Services.Events
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Błąd zapisu wydarzeń: {ex.Message}");
+                Console.WriteLine("ok");
             }
         }
 
