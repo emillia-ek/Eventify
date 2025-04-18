@@ -1,0 +1,9 @@
+/.vs
+bin/Debug/Eventify.exe
+bin/Debug/Eventify.exe.config
+bin/Debug/Eventify.pdb
+bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
+*.xml
+*.dll
+/obj
+/packages

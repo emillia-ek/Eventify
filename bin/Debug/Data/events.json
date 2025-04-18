@@ -1,0 +1,25 @@
+[
+  
+  {
+    "Id": 2,
+    "Name": "aasss",
+    "StartDate": "2020-02-20T11:11:00",
+    "EndDate": "2020-02-21T12:11:00",
+    "Location": "poznan",
+    "Description": "sss",
+    "MaxParticipants": 34,
+    "Price": 33,
+    "EventType": "Concert"
+  },
+  {
+    "Id": 3,
+    "Name": "ss",
+    "StartDate": "2020-03-20T00:00:00",
+    "EndDate": "2021-03-20T00:00:00",
+    "Location": "poz",
+    "Description": "20202",
+    "MaxParticipants": 23,
+    "Price": 22,
+    "EventType": "Conference"
+  }
+]
