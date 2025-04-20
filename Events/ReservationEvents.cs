@@ -16,6 +16,7 @@ namespace Eventify.Events
             Console.WriteLine($"[LOG] Rezerwacja utworzona przez {username} dla wydarzenia ID: {eventId}");
             ReservationCreated?.Invoke(username, eventId);
         }
+
     }
 }
 

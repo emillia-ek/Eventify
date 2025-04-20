@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using Eventify.Events;
 using Eventify.Interfaces;
 using Eventify.Models;
 using Eventify.Models.Events;
@@ -16,6 +17,8 @@ namespace Eventify.Services.Reservations
         private const string ReservationsFilePath = "Data/reservations.json";
         private List<Reservation> _reservations;
         private readonly EventService _eventService;
+        public event EventHandler<Reservation> ReservationCancelled;
+
 
         public ReservationService(EventService eventService)
         {
@@ -55,6 +58,10 @@ namespace Eventify.Services.Reservations
 
                 _reservations.Add(reservation);
                 SaveReservations();
+
+                // WYWOŁANIE EVENTU
+                ReservationEvents.RaiseReservationCreated(username, eventId);
+
                 return true;
             }
             catch (Exception ex)
@@ -63,6 +70,7 @@ namespace Eventify.Services.Reservations
                 return false;
             }
         }
+
 
 
         public bool CancelReservation(int reservationId, string username)
@@ -84,7 +92,8 @@ namespace Eventify.Services.Reservations
                     throw new InvalidOperationException("Nie można anulować rezerwacji na mniej niż 24 godziny przed wydarzeniem.");
 
                 _reservations.Remove(reservation); 
-                SaveReservations();                
+                SaveReservations();
+                ReservationCancelled?.Invoke(this, reservation);
                 return true;
             }
             catch (Exception ex)
@@ -157,6 +166,7 @@ namespace Eventify.Services.Reservations
             }
         }
 
+        //pobieranie rezerwacji z pliku json
         private void LoadReservations()
         {
             if (File.Exists(ReservationsFilePath))
@@ -173,17 +183,18 @@ namespace Eventify.Services.Reservations
                 }
             }
         }
+        //usuwanie rezerwacji, w przypadku gdy event zostanie usuniety
         public void RemoveReservationsForEvent(int eventId)
-{
-    var reservationsToRemove = _reservations.Where(r => r.EventId == eventId).ToList();
-    foreach (var reservation in reservationsToRemove)
-    {
-        _reservations.Remove(reservation);
-    }
-    SaveReservations();
-}
+        {
+            var reservationsToRemove = _reservations.Where(r => r.EventId == eventId).ToList();
+            foreach (var reservation in reservationsToRemove)
+            {
+                _reservations.Remove(reservation);
+            }
+            SaveReservations();
+        }
 
-
+        //zapisywanie do pliku rezerwacji
         private void SaveReservations()
         {
             try

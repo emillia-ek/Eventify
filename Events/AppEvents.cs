@@ -28,7 +28,6 @@ namespace Eventify.Events
         public static event UserActionEventHandler UserLoggedIn;
         public static event UserActionEventHandler UserRegistered;
         public static event UserActionEventHandler UserDeleted;
-        public static event UserActionEventHandler PasswordChanged;
 
         public static void OnUserLoggedIn(string username)
         {
@@ -45,9 +44,5 @@ namespace Eventify.Events
             UserDeleted?.Invoke(null, new UserActionEventArgs(username, "DELETE_USER"));
         }
 
-        public static void OnPasswordChanged(string username)
-        {
-            PasswordChanged?.Invoke(null, new UserActionEventArgs(username, "PASSWORD_CHANGE"));
-        }
     }
 }

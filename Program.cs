@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Eventify.Models;
 using Eventify.Models.Accounts;
 using Eventify.Services.Auth;
 using Eventify.Services.Events;
 using Eventify.Services.Reservations;
 using Eventify.Utils;
+using Eventify.Events;
+
 
 class Program
 {
@@ -16,13 +19,48 @@ class Program
     private static ReservationService _reservationService = new ReservationService(_eventService);
     private static EventConsoleUI _eventConsoleUI = new EventConsoleUI(_eventService);
     private const string UsersFilePath = "Data/users.txt";
+    private const string LogFilePath = "Data/user_events.txt";
+
+
+    private static void OnReservationCancelled(object sender, Reservation reservation)
+    {
+        ConsoleHelper.PrintSuccess($"[INFO] Użytkownik {reservation.Username} anulował rezerwację ID: {reservation.Id}.");
+    }
+    
 
     static void Main()
     {
         Console.Title = "Eventify - System Zarządzania Wydarzeniami";
         InitializeDataDirectory();
+        _reservationService.ReservationCancelled += OnReservationCancelled;
+        AppEvents.UserLoggedIn += OnUserAction;
+        AppEvents.UserRegistered += OnUserAction;
+        AppEvents.UserDeleted += OnUserAction;
+
+
         ShowMainMenu();
     }
+    private static void OnUserAction(object sender, UserActionEventArgs e)
+    {
+        try
+        {
+            ConsoleHelper.PrintSuccess($"[EVENT] {e.ActionType} | Użytkownik: {e.Username} | Czas: {e.ActionTime}");
+
+            if (!Directory.Exists("Data"))
+            {
+                Directory.CreateDirectory("Data");
+            }
+            File.AppendAllText("Data/user_events.txt", $"{e.ActionTime:u} | {e.ActionType} | {e.Username}{Environment.NewLine}");
+            File.AppendAllText(LogFilePath, "log");
+
+        }
+        catch (Exception ex)
+        {
+            ConsoleHelper.PrintError($"Błąd podczas zapisywania do pliku: {ex.Message}");
+        }
+    }
+
+
     static void ShowMainMenu()
     {
         while (true)
@@ -69,6 +107,7 @@ class Program
         if (_currentUser != null)
         {
             ConsoleHelper.PrintSuccess($"Zalogowano pomyślnie jako {_currentUser.Role}!");
+            AppEvents.OnUserLoggedIn(_currentUser.Username);
             Console.ReadKey();
             ShowUserDashboard();
         }
@@ -101,6 +140,7 @@ class Program
         if (_authService.Register(username, password, email))
         {
             ConsoleHelper.PrintSuccess("Rejestracja zakończona pomyślnie! Możesz się teraz zalogować.");
+            AppEvents.OnUserRegistered(username);
             Console.ReadKey();
         }
     }
@@ -213,6 +253,7 @@ class Program
         if (_authService.DeleteUser(username))
         {
             ConsoleHelper.PrintSuccess($"Użytkownik {username} został pomyślnie usunięty.");
+            AppEvents.OnUserDeleted(username);
         }
         else
         {
