@@ -12,13 +12,6 @@ namespace Eventify.Models.Accounts
         public RegularUser(string username, string passwordHash, string email)
             : base(username, passwordHash, "User", email) { }
 
-        public override void DisplayDashboard()
-        {
-            ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
-            Console.WriteLine("1. Przeglądaj wydarzenia");
-            Console.WriteLine("2. Moje rezerwacje");
-            Console.WriteLine("3. Zmień hasło");
-            Console.WriteLine("4. Wyloguj się");
-        }
+        
     }
 }

@@ -12,13 +12,6 @@ namespace Eventify.Models.Accounts
         public Manager(string username, string passwordHash, string email)
             : base(username, passwordHash, "Manager", email) { }
 
-        public override void DisplayDashboard()
-        {
-            ConsoleHelper.PrintHeader("PANEL MENADŻERA");
-            Console.WriteLine("1. Zarządzaj wydarzeniami");
-            Console.WriteLine("2. Przeglądaj rezerwacje");
-            Console.WriteLine("3. Generuj raporty");
-            Console.WriteLine("4. Wyloguj się");
-        }
+        
     }
 }

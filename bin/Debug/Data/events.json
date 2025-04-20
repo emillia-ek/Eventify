@@ -1,25 +1,28 @@
 [
-  
   {
-    "Id": 2,
-    "Name": "aasss",
-    "StartDate": "2020-02-20T11:11:00",
-    "EndDate": "2020-02-21T12:11:00",
-    "Location": "poznan",
-    "Description": "sss",
-    "MaxParticipants": 34,
-    "Price": 33,
-    "EventType": "Concert"
+    "Id": 1,
+    "Name": "Rock Night",
+    "StartDate": "2025-05-10T20:00:00",
+    "EndDate": "2025-05-10T23:30:00",
+    "Location": "Stadion Narodowy, Warszawa",
+    "Description": "Wieczór rockowych brzmień z najlepszymi zespołami.",
+    "MaxParticipants": 5000,
+    "Price": 150.00,
+    "EventType": "Concert",
+    "Artist": "AC/DC",
+    "MusicGenre": "Rock"
   },
   {
-    "Id": 3,
-    "Name": "ss",
-    "StartDate": "2020-03-20T00:00:00",
-    "EndDate": "2021-03-20T00:00:00",
-    "Location": "poz",
-    "Description": "20202",
-    "MaxParticipants": 23,
-    "Price": 22,
-    "EventType": "Conference"
+    "Id": 2,
+    "Name": "Digital Future 2025",
+    "StartDate": "2025-06-15T09:00:00",
+    "EndDate": "2025-06-17T17:00:00",
+    "Location": "EXPO Kraków",
+    "Description": "Międzynarodowa konferencja o nowych technologiach i przyszłości cyfryzacji.",
+    "MaxParticipants": 1200,
+    "Price": 800.00,
+    "EventType": "Conference",
+    "Topic": "Technologie przyszłości",
+    "Speaker": "Elon Musk"
   }
 ]

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Eventify.Models.Events;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
+using Eventify.Models;
+using Eventify.Models.Events;
 
 namespace Eventify.Services.Events
 {
@@ -26,16 +25,20 @@ namespace Eventify.Services.Events
             if (newEvent == null)
                 throw new ArgumentNullException(nameof(newEvent));
 
-            // Jeśli newEvent.Id jest już ustawione (np. podczas edycji), sprawdź, czy nie koliduje
             if (newEvent.Id != 0 && _events.Any(e => e.Id == newEvent.Id))
-            {
                 throw new InvalidOperationException($"Wydarzenie o ID {newEvent.Id} już istnieje.");
-            }
+
+            if (newEvent.StartDate >= newEvent.EndDate)
+                throw new ArgumentException("Data rozpoczęcia musi być wcześniejsza niż data zakończenia.");
+
+            if (newEvent.MaxParticipants <= 0)
+                throw new ArgumentException("Maksymalna liczba uczestników musi być większa od zera.");
+
+            if (newEvent.Price < 0)
+                throw new ArgumentException("Cena nie może być ujemna.");
 
             if (newEvent.Id == 0)
-            {
                 newEvent.Id = _nextId++;
-            }
 
             _events.Add(newEvent);
             SaveEvents();
@@ -44,9 +47,10 @@ namespace Eventify.Services.Events
         public List<Event> GetAllEvents()
         {
             return _events?
-            .GroupBy(e => e.Id).Select(g => g.First())
-            .OrderBy(e => e.StartDate)
-            .ToList() ?? new List<Event>();
+                .GroupBy(e => e.Id)
+                .Select(g => g.First())
+                .OrderBy(e => e.StartDate)
+                .ToList() ?? new List<Event>();
         }
 
         public Event GetEventById(int id)
@@ -54,6 +58,17 @@ namespace Eventify.Services.Events
             return _events.FirstOrDefault(e => e.Id == id);
         }
 
+        public bool UpdateEvent(Event updatedEvent)
+        {
+            var existing = GetEventById(updatedEvent.Id);
+            if (existing == null)
+                return false;
+
+            _events.Remove(existing);
+            _events.Add(updatedEvent);
+            SaveEvents();
+            return true;
+        }
 
         public bool DeleteEvent(int id)
         {
@@ -66,7 +81,6 @@ namespace Eventify.Services.Events
             }
             return false;
         }
-
         public void LoadEvents()
         {
             if (File.Exists(EventsFilePath))
@@ -81,7 +95,7 @@ namespace Eventify.Services.Events
                     foreach (var item in rawEvents)
                     {
                         string eventType = item.GetProperty("EventType").GetString();
-
+                        Console.WriteLine("ok");
                         Event ev = null;
                         switch (eventType)
                         {
@@ -115,18 +129,52 @@ namespace Eventify.Services.Events
                 catch (Exception ex)
                 {
                     Console.WriteLine("Błąd podczas wczytywania wydarzeń: " + ex.Message);
+                    Console.ReadKey();
                 }
             }
         }
+
+
+        /*private void LoadEvents()
+        {
+            if (File.Exists(EventsFilePath))
+            {
+                try
+                {
+                    string json = File.ReadAllText(EventsFilePath);
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    _events = JsonSerializer.Deserialize<List<Event>>(json, options) ?? new List<Event>();
+
+                    _nextId = _events.Count > 0 ? _events.Max(e => e.Id) + 1 : 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Błąd podczas wczytywania wydarzeń: {ex.Message}");
+                    _events = new List<Event>();
+                    _nextId = 1;
+                }
+            }
+            else
+            {
+                _events = new List<Event>();
+                _nextId = 1;
+            }
+        }*/
 
 
         private void SaveEvents()
         {
             try
             {
-                var uniqueEvents = _events.GroupBy(e => e.Id).Select(g => g.First()).ToList();
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(uniqueEvents, options);
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    PropertyNamingPolicy = null
+                };
+                string json = JsonSerializer.Serialize(_events, options);
                 File.WriteAllText(EventsFilePath, json);
             }
             catch (Exception ex)

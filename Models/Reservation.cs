@@ -1,21 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eventify.Models
 {
     public class Reservation
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public int Id { get; set; }
         public string Username { get; set; }
         public int EventId { get; set; }
-        public DateTime ReservedAt { get; set; } = DateTime.Now;
+        public DateTime ReservedAt { get; set; }
+        public bool IsCancelled { get; set; }
+        public DateTime? CancelledAt { get; set; }
 
         public void Display()
         {
-            Console.WriteLine($"[REZ] {Username} zarezerwował wydarzenie ID: {EventId} dnia {ReservedAt}");
+            Console.WriteLine($"ID: {Id}");
+            Console.WriteLine($"ID Wydarzenia: {EventId}");
+            Console.WriteLine($"Użytkownik: {Username}");
+            Console.WriteLine($"Data rezerwacji: {ReservedAt}");
+            Console.WriteLine($"Status: {(IsCancelled ? "ANULOWANA" : "AKTYWNA")}");
+            if (IsCancelled)
+                Console.WriteLine($"Data anulowania: {CancelledAt}");
+            Console.WriteLine(new string('-', 20));
         }
     }
 }

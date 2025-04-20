@@ -22,6 +22,5 @@ namespace Eventify.Models.Accounts
             Email = email;
         }
 
-        public abstract void DisplayDashboard();
     }
 }

@@ -9,7 +9,7 @@ namespace Eventify.Interfaces
 {
     public interface IReservable
     {
-        void Reserve(string username, int eventId);
+        //void Reserve(string username, int eventId);
         void ShowUserReservations(string username);
     }
 }

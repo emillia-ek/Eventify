@@ -91,7 +91,6 @@
     <Compile Include="Services\Auth\AuthService.cs" />
     <Compile Include="Services\Auth\RBACService.cs" />
     <Compile Include="Services\Events\EventConsoleUI.cs" />
-    <Compile Include="Services\Events\EventSerializer.cs" />
     <Compile Include="Services\Events\EventService.cs" />
     <Compile Include="Services\Reservations\ReservationService.cs" />
     <Compile Include="Utils\ConsoleHelper.cs" />

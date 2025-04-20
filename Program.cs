@@ -1,35 +1,28 @@
-﻿using Eventify.Models.Accounts;
-using Eventify.Services.Auth;
-using Eventify.Services.Events;
-using Eventify.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Eventify.Models.Accounts;
+using Eventify.Services.Auth;
+using Eventify.Services.Events;
 using Eventify.Services.Reservations;
-using Eventify.Models.Events;
-
+using Eventify.Utils;
 
 class Program
 {
-
-    private const string UsersFilePath = "Data/users.txt";
     private static AuthService _authService = new AuthService();
     private static User _currentUser;
     private static EventService _eventService = new EventService();
-    private static EventConsoleUI _eventConsoleUI = new EventConsoleUI(_eventService);
     private static ReservationService _reservationService = new ReservationService(_eventService);
-
+    private static EventConsoleUI _eventConsoleUI = new EventConsoleUI(_eventService);
+    private const string UsersFilePath = "Data/users.txt";
 
     static void Main()
     {
-
         Console.Title = "Eventify - System Zarządzania Wydarzeniami";
+        InitializeDataDirectory();
         ShowMainMenu();
     }
-
     static void ShowMainMenu()
     {
         while (true)
@@ -58,7 +51,11 @@ class Program
             }
         }
     }
-
+    static void InitializeDataDirectory()
+    {
+        if (!Directory.Exists("Data"))
+            Directory.CreateDirectory("Data");
+    }
     static void Login()
     {
         ConsoleHelper.PrintHeader("LOGOWANIE");
@@ -225,72 +222,6 @@ class Program
         Console.ReadKey();
     }
 
-    static void ShowUserDashboard()
-    {
-        if (_currentUser == null) return;
-
-        while (true)
-        {
-            if (_currentUser.Role == "Admin")
-            {
-                ShowAdminMenu();
-                return;
-            }
-            else if (_currentUser.Role == "Manager")
-            {
-                ShowManagerMenu();
-                return;
-            }
-            Console.Clear();
-            ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
-            Console.WriteLine("1. Przeglądaj wydarzenia");
-            Console.WriteLine("2. Zarezerwuj wydarzenie");
-            Console.WriteLine("3. Moje rezerwacje");
-            Console.WriteLine("4. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
-
-            var choice = Console.ReadLine();
-
-            switch (choice)
-            {
-                case "1":
-                    Console.Clear();
-                    _eventConsoleUI.DisplayAllEvents();
-                    break;
-
-                case "2":
-                    _eventConsoleUI.DisplayAllEvents(false); // Wyświetl bez czekania na klawisz
-                    Console.Write("\nPodaj ID wydarzenia do rezerwacji: ");
-                    var input = Console.ReadLine();
-
-                    if (int.TryParse(input, out var eventId))
-                    {
-                        _reservationService.Reserve(_currentUser.Username, eventId);
-                    }
-                    else
-                    {
-                        ConsoleHelper.PrintError("Nieprawidłowy format ID.");
-                    }
-
-                    Console.ReadKey();
-                    break;
-
-                case "3":
-                    _reservationService.ShowUserReservations(_currentUser.Username);
-                    Console.ReadKey();
-                    break;
-
-                case "4":
-                    _currentUser = null;
-                    return;
-
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
-            }
-        }
-    }
 
 
     static void ShowManagerMenu()
@@ -432,5 +363,98 @@ class Program
             Console.WriteLine($"{i + 1,-10} {eventPopularity[i].Event.Name,-40} {eventPopularity[i].ReservationsCount,-20}");
         }
     }
+        
 
+
+     static void ShowUserDashboard()
+    {
+        if (_currentUser == null) return;
+
+        while (true)
+        {
+            if (_currentUser.Role == "Admin")
+            {
+                ShowAdminMenu();
+                return;
+            }
+            else if (_currentUser.Role == "Manager")
+            {
+                ShowManagerMenu();
+                return;
+            }
+            else if (_currentUser.Role == "User")
+            {
+
+
+                ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
+                Console.WriteLine($"Witaj, {_currentUser.Username}!");
+                Console.WriteLine("1. Przeglądaj wydarzenia");
+                Console.WriteLine("2. Zarezerwuj wydarzenie");
+                Console.WriteLine("3. Moje rezerwacje");
+                Console.WriteLine("4. Anuluj rezerwację");
+                Console.WriteLine("5. Wyloguj się");
+                Console.Write("\nWybierz opcję: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        _eventConsoleUI.DisplayAllEvents();
+                        break;
+                    case "2":
+                        HandleReservation();
+                        break;
+                    case "3":
+                        _reservationService.ShowUserReservations(_currentUser.Username);
+                        Console.ReadKey();
+                        break;
+                    case "4":
+                        HandleCancellation();
+                        break;
+                    case "5":
+                        _currentUser = null;
+                        return;
+                    default:
+                        ConsoleHelper.PrintError("Nieprawidłowy wybór.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+    }
+
+    static void HandleReservation()
+    {
+        _eventConsoleUI.DisplayAllEvents(false);
+        Console.Write("\nPodaj ID wydarzenia do rezerwacji: ");
+        if (int.TryParse(Console.ReadLine(), out int eventId))
+        {
+            if (_reservationService.Reserve(_currentUser.Username, eventId))
+                ConsoleHelper.PrintSuccess("Rezerwacja zakończona sukcesem!");
+            else
+                ConsoleHelper.PrintError("Nie udało się zarezerwować.");
+        }
+        else
+        {
+            ConsoleHelper.PrintError("Nieprawidłowy format ID.");
+        }
+        Console.ReadKey();
+    }
+
+    static void HandleCancellation()
+    {
+        _reservationService.ShowUserReservations(_currentUser.Username);
+        Console.Write("\nPodaj ID rezerwacji do anulowania: ");
+        if (int.TryParse(Console.ReadLine(), out int reservationId))
+        {
+            if (_reservationService.CancelReservation(reservationId, _currentUser.Username))
+                ConsoleHelper.PrintSuccess("Rezerwacja została anulowana!");
+            else
+                ConsoleHelper.PrintError("Nie udało się anulować rezerwacji.");
+        }
+        else
+        {
+            ConsoleHelper.PrintError("Nieprawidłowy format ID.");
+        }
+        Console.ReadKey();
+    }
 }

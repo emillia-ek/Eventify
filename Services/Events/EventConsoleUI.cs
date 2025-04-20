@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Eventify.Models.Events;
+using Eventify.Utils;
 
 namespace Eventify.Services.Events
 {
@@ -20,16 +19,15 @@ namespace Eventify.Services.Events
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("=== MENU ZARZĄDZANIA WYDARZENIAMI ===");
+                ConsoleHelper.PrintHeader("MENU ZARZĄDZANIA WYDARZENIAMI");
                 Console.WriteLine("1. Dodaj nowe wydarzenie");
                 Console.WriteLine("2. Wyświetl wszystkie wydarzenia");
-                Console.WriteLine("3. Usuń wydarzenie");
-                Console.WriteLine("4. Powrót");
+                Console.WriteLine("3. Edytuj wydarzenie");
+                Console.WriteLine("4. Usuń wydarzenie");
+                Console.WriteLine("5. Powrót");
                 Console.Write("Wybierz opcję: ");
 
-                var choice = Console.ReadLine();
-                switch (choice)
+                switch (Console.ReadLine())
                 {
                     case "1":
                         AddNewEvent();
@@ -38,12 +36,15 @@ namespace Eventify.Services.Events
                         DisplayAllEvents();
                         break;
                     case "3":
-                        DeleteEvent();
+                        EditEvent();
                         break;
                     case "4":
+                        DeleteEvent();
+                        break;
+                    case "5":
                         return;
                     default:
-                        Console.WriteLine("Nieprawidłowy wybór. Naciśnij dowolny klawisz, aby kontynuować...");
+                        ConsoleHelper.PrintError("Nieprawidłowy wybór.");
                         Console.ReadKey();
                         break;
                 }
@@ -52,8 +53,7 @@ namespace Eventify.Services.Events
 
         private void AddNewEvent()
         {
-            Console.Clear();
-            Console.WriteLine("=== DODAWANIE NOWEGO WYDARZENIA ===");
+            ConsoleHelper.PrintHeader("DODAWANIE NOWEGO WYDARZENIA");
             Console.WriteLine("1. Koncert");
             Console.WriteLine("2. Konferencja");
             Console.Write("Wybierz typ wydarzenia: ");
@@ -61,78 +61,101 @@ namespace Eventify.Services.Events
             var typeChoice = Console.ReadLine();
             if (typeChoice != "1" && typeChoice != "2")
             {
-                Console.WriteLine("Nieprawidłowy wybór typu wydarzenia.");
+                ConsoleHelper.PrintError("Nieprawidłowy wybór typu wydarzenia.");
                 return;
             }
 
-            Console.Write("Nazwa wydarzenia: ");
-            string name = Console.ReadLine();
-
-            Console.Write("Data rozpoczęcia (dd.MM.yyyy HH:mm): ");
-            DateTime startDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Data zakończenia (dd.MM.yyyy HH:mm): ");
-            DateTime endDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Miejsce: ");
-            string location = Console.ReadLine();
-
-            Console.Write("Opis: ");
-            string description = Console.ReadLine();
-
-            Console.Write("Maksymalna liczba uczestników: ");
-            int maxParticipants = int.Parse(Console.ReadLine());
-
-            Console.Write("Cena: ");
-            decimal price = decimal.Parse(Console.ReadLine());
-
-            if (typeChoice == "1") // Koncert
+            try
             {
-                Console.Write("Wykonawca: ");
-                string artist = Console.ReadLine();
+                Console.Write("Nazwa wydarzenia: ");
+                string name = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new ArgumentException("Nazwa wydarzenia jest wymagana.");
 
-                Console.Write("Gatunek muzyczny: ");
-                string musicGenre = Console.ReadLine();
+                Console.Write("Data rozpoczęcia (dd.MM.yyyy HH:mm): ");
+                if (!DateTime.TryParse(Console.ReadLine(), out DateTime startDate))
+                    throw new ArgumentException("Nieprawidłowy format daty.");
 
-                var concert = new Concert(0, name, startDate, endDate, location,
-                                       description, maxParticipants, price,
-                                       artist, musicGenre);
-                _eventService.AddEvent(concert);
-            }
-            else // Konferencja
-            {
-                Console.Write("Temat konferencji: ");
-                string theme = Console.ReadLine();
+                Console.Write("Data zakończenia (dd.MM.yyyy HH:mm): ");
+                if (!DateTime.TryParse(Console.ReadLine(), out DateTime endDate))
+                    throw new ArgumentException("Nieprawidłowy format daty.");
 
-                Console.WriteLine("Prelegenci (wprowadź jednego prelegenta na linię, zakończ pustą linią):");
-                var speakers = new List<string>();
-                string speaker;
-                do
+                if (endDate <= startDate)
+                    throw new ArgumentException("Data zakończenia musi być późniejsza niż data rozpoczęcia.");
+
+                Console.Write("Miejsce: ");
+                string location = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(location))
+                    throw new ArgumentException("Miejsce jest wymagane.");
+
+                Console.Write("Opis: ");
+                string description = Console.ReadLine();
+
+                Console.Write("Maksymalna liczba uczestników: ");
+                if (!int.TryParse(Console.ReadLine(), out int maxParticipants) || maxParticipants <= 0)
+                    throw new ArgumentException("Nieprawidłowa liczba uczestników.");
+
+                Console.Write("Cena: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal price) || price < 0)
+                    throw new ArgumentException("Nieprawidłowa cena.");
+
+                if (typeChoice == "1")
                 {
-                    speaker = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(speaker))
+                    Console.Write("Wykonawca: ");
+                    string artist = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(artist))
+                        throw new ArgumentException("Wykonawca jest wymagany.");
+
+                    Console.Write("Gatunek muzyczny: ");
+                    string musicGenre = Console.ReadLine();
+
+                    var concert = new Concert(0, name, startDate, endDate, location,
+                                           description, maxParticipants, price,
+                                           artist, musicGenre);
+                    _eventService.AddEvent(concert);
+                }
+                else
+                {
+                    Console.Write("Temat konferencji: ");
+                    string theme = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(theme))
+                        throw new ArgumentException("Temat konferencji jest wymagany.");
+
+                    Console.WriteLine("Prelegenci (wprowadź jednego prelegenta na linię, zakończ pustą linią):");
+                    var speakers = new List<string>();
+                    string speaker;
+                    do
                     {
-                        speakers.Add(speaker);
-                    }
-                } while (!string.IsNullOrWhiteSpace(speaker));
+                        speaker = Console.ReadLine();
+                        if (!string.IsNullOrWhiteSpace(speaker))
+                            speakers.Add(speaker);
+                    } while (!string.IsNullOrWhiteSpace(speaker));
 
-                var conference = new Conference(0, name, startDate, endDate, location,
-                                             description, maxParticipants, price,
-                                             theme, speakers.ToArray());
-                _eventService.AddEvent(conference);
+                    if (speakers.Count == 0)
+                        throw new ArgumentException("Wymagany jest co najmniej jeden prelegent.");
+
+                    var conference = new Conference(0, name, startDate, endDate, location,
+                                                 description, maxParticipants, price,
+                                                 theme, speakers.ToArray());
+                    _eventService.AddEvent(conference);
+                }
+
+                ConsoleHelper.PrintSuccess("Wydarzenie zostało dodane pomyślnie!");
             }
-
-            Console.WriteLine("Wydarzenie zostało dodane pomyślnie!");
-            Console.ReadKey();
+            catch (Exception ex)
+            {
+                ConsoleHelper.PrintError($"Błąd: {ex.Message}");
+            }
+            finally
+            {
+                Console.ReadKey();
+            }
         }
 
         public void DisplayAllEvents(bool waitForUserInput = true)
         {
-            Console.Clear();
-            Console.WriteLine("=== LISTA WYDARZEŃ ===");
-            Console.WriteLine();
-
-            var events = _eventService.GetAllEvents()?.OrderBy(e => e.Id).ToList();
+            ConsoleHelper.PrintHeader("LISTA WYDARZEŃ");
+            var events = _eventService.GetAllEvents();
 
             if (events == null || !events.Any())
             {
@@ -155,44 +178,83 @@ namespace Eventify.Services.Events
             }
         }
 
-
-
-        private void DeleteEvent()
+        private void EditEvent()
         {
-            Console.Clear();
-            Console.WriteLine("=== USUWANIE WYDARZENIA ===");
+            ConsoleHelper.PrintHeader("EDYCJA WYDARZENIA");
+            DisplayAllEvents(false);
 
-            var events = _eventService.GetAllEvents();
-            if (events.Count == 0)
+            Console.Write("\nPodaj ID wydarzenia do edycji: ");
+            if (!int.TryParse(Console.ReadLine(), out int id))
             {
-                Console.WriteLine("Brak wydarzeń do usunięcia.");
+                ConsoleHelper.PrintError("Nieprawidłowy format ID.");
                 Console.ReadKey();
                 return;
             }
 
-            Console.WriteLine("Dostępne wydarzenia:");
-            foreach (var ev in events)
+            var existingEvent = _eventService.GetEventById(id);
+            if (existingEvent == null)
             {
-                Console.WriteLine($"{ev.Id}. {ev.Name} ({ev.StartDate.ToShortDateString()})");
+                ConsoleHelper.PrintError("Nie znaleziono wydarzenia o podanym ID.");
+                Console.ReadKey();
+                return;
             }
 
-            Console.Write("\nPodaj ID wydarzenia do usunięcia: ");
-            if (int.TryParse(Console.ReadLine(), out int id))
+            try
             {
-                if (_eventService.DeleteEvent(id))
+                Console.WriteLine("\nAktualne dane wydarzenia:");
+                existingEvent.DisplayEventDetails();
+
+                Console.Write("\nNowa nazwa (pozostaw puste aby nie zmieniać): ");
+                string name = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(name))
+                    existingEvent.Name = name;
+
+                Console.Write("Nowa data rozpoczęcia (dd.MM.yyyy HH:mm, pozostaw puste aby nie zmieniać): ");
+                string startDateInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(startDateInput))
                 {
-                    Console.WriteLine("Wydarzenie zostało usunięte pomyślnie!");
+                    if (DateTime.TryParse(startDateInput, out DateTime startDate))
+                        existingEvent.StartDate = startDate;
+                    else
+                        throw new ArgumentException("Nieprawidłowy format daty.");
                 }
-                else
-                {
-                    Console.WriteLine("Nie znaleziono wydarzenia o podanym ID.");
-                }
+
+                // Analogicznie dla innych pól...
+
+                _eventService.UpdateEvent(existingEvent);
+                ConsoleHelper.PrintSuccess("Wydarzenie zostało zaktualizowane!");
+            }
+            catch (Exception ex)
+            {
+                ConsoleHelper.PrintError($"Błąd podczas edycji: {ex.Message}");
+            }
+            finally
+            {
+                Console.ReadKey();
+            }
+        }
+
+        private void DeleteEvent()
+        {
+            ConsoleHelper.PrintHeader("USUWANIE WYDARZENIA");
+            DisplayAllEvents(false);
+
+            Console.Write("\nPodaj ID wydarzenia do usunięcia: ");
+            if (!int.TryParse(Console.ReadLine(), out int id))
+            {
+                ConsoleHelper.PrintError("Nieprawidłowy format ID.");
+                Console.ReadKey();
+                return;
+            }
+
+            if (_eventService.DeleteEvent(id))
+            {
+                ConsoleHelper.PrintSuccess("Wydarzenie zostało usunięte pomyślnie!");
             }
             else
             {
-                Console.WriteLine("Nieprawidłowy format ID.");
+                ConsoleHelper.PrintError("Nie udało się usunąć wydarzenia.");
             }
-
             Console.ReadKey();
         }
     }

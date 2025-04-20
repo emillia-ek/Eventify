@@ -1,20 +1,26 @@
 [
   {
-    "Id": "8eb2990d-fa29-4835-a6c5-3a78798d1786",
-    "Username": "ami",
+    "Id": 1,
+    "Username": "ss",
     "EventId": 1,
-    "ReservedAt": "2025-04-08T16:09:22.0508078+02:00"
+    "ReservedAt": "2025-04-20T18:26:46.2261025+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
   },
   {
-    "Id": "234a9645-bce1-4659-8489-312a88d2e381",
-    "Username": "ami",
-    "EventId": 3,
-    "ReservedAt": "2025-04-18T22:52:22.6875534+02:00"
+    "Id": 2,
+    "Username": "aa",
+    "EventId": 1,
+    "ReservedAt": "2025-04-20T18:28:28.438976+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
   },
   {
-    "Id": "324a0a1c-876d-4b5a-8c25-0d6822bdd7d5",
-    "Username": "ami",
+    "Id": 3,
+    "Username": "aa",
     "EventId": 2,
-    "ReservedAt": "2025-04-18T23:25:42.2978883+02:00"
+    "ReservedAt": "2025-04-20T18:28:31.8916484+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
   }
 ]
