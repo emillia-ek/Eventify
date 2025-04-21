@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Eventify.Models;
+using Eventify.Services.Events;
+using Spectre.Console;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,16 +24,27 @@ namespace Eventify.Utils
 
         public static void PrintSuccess(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(message);
-            Console.ResetColor();
+            AnsiConsole.WriteLine("");
+            AnsiConsole.WriteLine("");
+            var errPanel = new Panel(new Rows(new Text(message))) { Border = BoxBorder.Rounded, Header = new PanelHeader("[green]SUKCES![/]"), Padding = new Padding(1, 1, 1, 1) };
+            AnsiConsole.Write(errPanel);
         }
 
         public static void PrintError(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            Console.ResetColor();
+            AnsiConsole.WriteLine("");
+            AnsiConsole.WriteLine("");
+            var errPanel = new Panel(new Rows(new Text(message))) { Border = BoxBorder.Rounded, Header = new PanelHeader("[red]UWAGA![/]"), Padding = new Padding(1, 1, 1, 1) };
+            AnsiConsole.Write(errPanel);
+
+        }
+        public static void PrintInfo(string message)
+        {
+            AnsiConsole.WriteLine("");
+            AnsiConsole.WriteLine("");
+            var errPanel = new Panel(new Rows(new Text(message))) { Border = BoxBorder.Rounded, Header = new PanelHeader("[yellow]INFO[/]"), Padding = new Padding(1, 1, 1, 1) };
+            AnsiConsole.Write(errPanel);
+
         }
 
         public static string ReadPassword()

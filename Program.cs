@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Eventify.Services.Reservations;
 using Eventify.Models.Events;
+using Figgle;
+using Spectre.Console;
+using System.Runtime.CompilerServices;
+
 
 
 class Program
@@ -27,6 +31,7 @@ class Program
     {
 
         Console.Title = "Eventify - System Zarządzania Wydarzeniami";
+        Console.CursorVisible = false;
         ShowMainMenu();
     }
 
@@ -34,25 +39,44 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("WITAMY W SYSTEMIE EVENTIFY");
-            Console.WriteLine("1. Zaloguj się");
-            Console.WriteLine("2. Zarejestruj się");
-            Console.WriteLine("3. Wyjdź");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]EVENTIFY[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            AnsiConsole.Write(
+                new Panel(FiggleFonts.Standard.Render("EVENTIFY")).Border(BoxBorder.None)); //aligny nie dzialaja
+
+            AnsiConsole.MarkupLine("[grey]System zarządzania wydarzeniami[/]\n");
+
+
+            AnsiConsole.WriteLine();
+            AnsiConsole.WriteLine();
+
+            var menu = new SelectionPrompt<string>()
+                .Title("[red]Wybierz opcję:[/]")
+                .PageSize(3)
+                .AddChoices(new[] {
+                    "Zaloguj się",
+                    "Zarejestruj się",
+                    "Wyjdź"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
             switch (choice)
             {
-                case "1":
+                case "Zaloguj się":
                     Login();
                     break;
-                case "2":
+                case "Zarejestruj się":
                     Register();
                     break;
-                case "3":
+                case "Wyjdź":
+                    AnsiConsole.MarkupLine("[grey]Do zobaczenia![/]");
                     Environment.Exit(0);
                     break;
+
                 default:
+                    
                     ConsoleHelper.PrintError("Nieprawidłowy wybór. Spróbuj ponownie.");
                     break;
             }
@@ -61,22 +85,27 @@ class Program
 
     static void Login()
     {
-        ConsoleHelper.PrintHeader("LOGOWANIE");
-        Console.Write("Nazwa użytkownika: ");
-        var username = Console.ReadLine() ?? "";
-        Console.Write("Hasło: ");
-        var password = ConsoleHelper.ReadPassword();
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]LOGOWANIE[/]").RuleStyle("grey").Centered());
+
+        var username = AnsiConsole.Ask<string>("[yellow]Nazwa użytkownika:[/] ");
+        var password = AnsiConsole.Prompt(
+            new TextPrompt<string>("[yellow]Hasło:[/] ")
+                .PromptStyle("red")
+                .Secret());
 
         _currentUser = _authService.Login(username, password);
 
         if (_currentUser != null)
         {
+            //AnsiConsole.MarkupLine($"[green]Zalogowano pomyślnie jako {_currentUser.Role}![/]");
             ConsoleHelper.PrintSuccess($"Zalogowano pomyślnie jako {_currentUser.Role}!");
             Console.ReadKey();
             ShowUserDashboard();
         }
         else
         {
+            //AnsiConsole.MarkupLine("[red][/]");
             ConsoleHelper.PrintError("Nieprawidłowa nazwa użytkownika lub hasło.");
             Console.ReadKey();
         }
@@ -84,18 +113,27 @@ class Program
 
     static void Register()
     {
-        ConsoleHelper.PrintHeader("REJESTRACJA");
-        Console.Write("Nazwa użytkownika: ");
-        var username = Console.ReadLine() ?? "";
-        Console.Write("Email: ");
-        var email = Console.ReadLine() ?? "";
-        Console.Write("Hasło: ");
-        var password = ConsoleHelper.ReadPassword();
-        Console.Write("Potwierdź hasło: ");
-        var confirmPassword = ConsoleHelper.ReadPassword();
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]REJESTRACJA[/]").RuleStyle("grey").Centered());
+
+        var username = AnsiConsole.Ask<string>("[yellow]Nazwa użytkownika:[/] ");
+        var email = AnsiConsole.Ask<string>("[yellow]Email:[/] ");
+
+        var password = AnsiConsole.Prompt(
+            new TextPrompt<string>("[yellow]Hasło:[/] ")
+                .PromptStyle("red")
+                .Secret());
+
+        var confirmPassword = AnsiConsole.Prompt(
+            new TextPrompt<string>("[yellow]Potwierdź hasło:[/] ")
+                .PromptStyle("red")
+                .Secret());
+
+
 
         if (password != confirmPassword)
         {
+
             ConsoleHelper.PrintError("Hasła nie są identyczne!");
             Console.ReadKey();
             return;
@@ -103,35 +141,47 @@ class Program
 
         if (_authService.Register(username, password, email))
         {
+            
             ConsoleHelper.PrintSuccess("Rejestracja zakończona pomyślnie! Możesz się teraz zalogować.");
             Console.ReadKey();
         }
+        else
+        {
+            
+            ConsoleHelper.PrintError("Rejestracja nie powiodła się. Użytkownik może już istnieć.");
+            Console.ReadKey();
+        }
+
     }
     static void ShowAdminMenu()
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("PANEL ADMINISTRATORA");
-            Console.WriteLine("1. Zarządzaj użytkownikami");
-            Console.WriteLine("2. Zarządzaj wydarzeniami");
-            Console.WriteLine("3. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]PANEL ADMINISTRATORA[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(4)
+                .AddChoices(new[] {
+                    "Zarządzaj użytkownikami",
+                    "Zarządzaj wydarzeniami",
+                    "Wyloguj się"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
             switch (choice)
             {
-                case "1":
+                case "Zarządzaj użytkownikami":
                     ShowUserManagementMenu();
                     break;
-                case "2":
+                case "Zarządzaj wydarzeniami":
                     _eventConsoleUI.ShowEventManagementMenu();
                     break;
-                case "3":
+                case "Wyloguj się":
+                    _currentUser = null;
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }
@@ -140,85 +190,106 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("ZARZĄDZANIE UŻYTKOWNIKAMI");
-            Console.WriteLine("1. Wyświetl wszystkich użytkowników");
-            Console.WriteLine("2. Usuń użytkownika");
-            Console.WriteLine("3. Powrót");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]ZARZĄDZANIE UŻYTKOWNIKAMI[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(4)
+                .AddChoices(new[] {
+                    "Wyświetl wszystkich użytkowników",
+                    "Usuń użytkownika",
+                    "Powrót"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
             switch (choice)
             {
-                case "1":
+                case "Wyświetl wszystkich użytkowników":
                     DisplayAllUsers();
                     break;
-                case "2":
+                case "Usuń użytkownika":
                     DeleteUser();
                     break;
-                case "3":
+                case "Powrót":
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }
 
     static void DisplayAllUsers()
     {
-        ConsoleHelper.PrintHeader("LISTA UŻYTKOWNIKÓW");
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]LISTA UŻYTKOWNIKÓW[/]").RuleStyle("grey").Centered());
+
 
         try
         {
             if (!File.Exists(UsersFilePath))
             {
-                ConsoleHelper.PrintError("Brak pliku z użytkownikami.");
+                AnsiConsole.MarkupLine("[grey]Brak pliku z użytkownikami.[/]");
+                Console.ReadKey();
                 return;
             }
 
-            var lines = File.ReadAllLines(UsersFilePath);
-            foreach (var line in lines)
+            var users = File.ReadAllLines(UsersFilePath)
+                .Select(line => line.Split('|'))
+                .Select(parts => new { Username = parts[0], Role = parts[2], Email = parts[3] });
+
+            var table = new Table();
+            table.AddColumn("Nazwa użytkownika");
+            table.AddColumn("Rola");
+            table.AddColumn("Email");
+
+            foreach (var user in users)
             {
-                var parts = line.Split('|');
-                Console.WriteLine($"Nazwa: {parts[0]}, Rola: {parts[2]}, Email: {parts[3]}");
+                table.AddRow(user.Username, user.Role, user.Email);
             }
+
+            AnsiConsole.Render(table);
         }
         catch (Exception ex)
         {
+            
             ConsoleHelper.PrintError($"Błąd podczas wczytywania użytkowników: {ex.Message}");
         }
 
-        Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
+        AnsiConsole.MarkupLine("\n[grey]Naciśnij dowolny klawisz, aby kontynuować...[/]");
         Console.ReadKey();
     }
 
     static void DeleteUser()
     {
-        ConsoleHelper.PrintHeader("USUWANIE UŻYTKOWNIKA");
+        
         DisplayAllUsers();
 
-        Console.Write("\nPodaj nazwę użytkownika do usunięcia: ");
-        var username = Console.ReadLine();
+        var username = AnsiConsole.Ask<string>("\n[yellow]Podaj nazwę użytkownika do usunięcia:[/] ");
 
         if (string.IsNullOrWhiteSpace(username))
         {
+            
             ConsoleHelper.PrintError("Nie podano nazwy użytkownika.");
+            Console.ReadKey();
             return;
         }
 
         if (username == _currentUser?.Username)
         {
+            
             ConsoleHelper.PrintError("Nie możesz usunąć swojego własnego konta!");
+            Console.ReadKey();
             return;
         }
 
         if (_authService.DeleteUser(username))
         {
+            
             ConsoleHelper.PrintSuccess($"Użytkownik {username} został pomyślnie usunięty.");
         }
         else
         {
+            
             ConsoleHelper.PrintError("Nie udało się usunąć użytkownika.");
         }
 
@@ -241,26 +312,32 @@ class Program
                 ShowManagerMenu();
                 return;
             }
-            Console.Clear();
-            ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
-            Console.WriteLine("1. Przeglądaj wydarzenia");
-            Console.WriteLine("2. Zarezerwuj wydarzenie");
-            Console.WriteLine("3. Moje rezerwacje");
-            Console.WriteLine("4. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
 
-            var choice = Console.ReadLine();
+            Console.Clear();
+            AnsiConsole.Write(new Rule($"[red]PANEL UŻYTKOWNIKA: {_currentUser.Username}[/]").RuleStyle("grey").Centered());
+
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(5)
+                .AddChoices(new[] {
+                    "Przeglądaj wydarzenia",
+                    "Zarezerwuj wydarzenie",
+                    "Moje rezerwacje",
+                    "Wyloguj się"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
 
             switch (choice)
             {
-                case "1":
+                case "Przeglądaj wydarzenia":
                     Console.Clear();
                     _eventConsoleUI.DisplayAllEvents();
                     break;
 
-                case "2":
+                case "Zarezerwuj wydarzenie":
                     _eventConsoleUI.DisplayAllEvents(false); // Wyświetl bez czekania na klawisz
-                    Console.Write("\nPodaj ID wydarzenia do rezerwacji: ");
+                    AnsiConsole.Write("\n[yellow]Podaj ID wydarzenia do rezerwacji:[/] ");
                     var input = Console.ReadLine();
 
                     if (int.TryParse(input, out var eventId))
@@ -275,12 +352,12 @@ class Program
                     Console.ReadKey();
                     break;
 
-                case "3":
+                case "Moje rezerwacje":
                     _reservationService.ShowUserReservations(_currentUser.Username);
                     Console.ReadKey();
                     break;
 
-                case "4":
+                case "Wyloguj się":
                     _currentUser = null;
                     return;
 
@@ -297,27 +374,39 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("PANEL MENADŻERA");
-            Console.WriteLine("1. Zarządzaj wydarzeniami");
-            Console.WriteLine("2. Przeglądaj rezerwacje");
-            Console.WriteLine("3. Generuj raporty");
-            Console.WriteLine("4. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
+            
 
-            var choice = Console.ReadLine();
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]PANEL MENADŻERA[/]").RuleStyle("grey").Centered());
+
+            
+
+            var menu = new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz opcję:[/]")
+                .PageSize(5)
+                .AddChoices(new[] {
+                    "Zarządzaj wydarzeniami",
+                    "Przeglądaj rezerwacje",
+                    "Generuj raporty",
+                    "Wyloguj się"
+                });
+
+            var choice = AnsiConsole.Prompt(menu);
+
+            
             switch (choice)
             {
-                case "1":
+                case "Zarządzaj wydarzeniami":
                     _eventConsoleUI.ShowEventManagementMenu();
                     break;
-                case "2":
+                case "Przeglądaj rezerwacje":
                     _reservationService.ShowAllReservations();
                     Console.ReadKey();
                     break;
-                case "3":
+                case "Generuj raporty":
                     GenerateReports();
                     break;
-                case "4":
+                case "Wyloguj się":
                     _currentUser = null;
                     return;
                 default:
@@ -331,38 +420,43 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("GENEROWANIE RAPORTÓW");
-            Console.WriteLine("1. Raport uczestnictwa w wydarzeniach");
-            Console.WriteLine("2. Raport finansowy");
-            Console.WriteLine("3. Raport popularności wydarzeń");
-            Console.WriteLine("4. Powrót");
-            Console.Write("\nWybierz opcję: ");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]GENEROWANIE RAPORTÓW[/]").RuleStyle("grey").Centered());
 
-            var choice = Console.ReadLine();
+            var choice = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("[yellow]Wybierz typ raportu:[/]")
+                .PageSize(5)
+                .AddChoices(new[] {
+                    "Raport uczestnictwa w wydarzeniach",
+                    "Raport finansowy",
+                    "Raport popularności wydarzeń",
+                    "Powrót"
+                }));
+
             switch (choice)
             {
-                case "1":
+                case "Raport uczestnictwa w wydarzeniach":
                     GenerateUserCountReport();
                     break;
-                case "2":
+                case "Raport finansowy":
                     GenerateFinancialReport();
                     break;
-                case "3":
+                case "Raport popularności wydarzeń":
                     GeneratePopularityReport();
                     break;
-                case "4":
+                case "Powrót":
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    break;
             }
-            Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
-            Console.ReadKey();
+            
         }
     }
 
     static void GenerateUserCountReport()
     {
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]RAPORT UCZESTNICTWA[/]").RuleStyle("grey").Centered());
+
         var reservations = _reservationService.GetAllReservations();
 
         // Grupowanie po użytkownikach
@@ -376,25 +470,45 @@ class Program
             .OrderByDescending(x => x.TotalReservations)
             .ToList();
 
-        Console.WriteLine($"{"Użytkownik",-20} {"Liczba rezerwacji",-18} {"Różnych wydarzeń",-18}");
-        Console.WriteLine(new string('=', 56));
+        var table = new Table()
+        .Border(TableBorder.Rounded)
+        .BorderColor(Color.Grey)
+        .Title("[yellow]Aktywność użytkowników[/]")
+        .AddColumn(new TableColumn("[white]Użytkownik[/]").LeftAligned())
+        .AddColumn(new TableColumn("[white]Liczba rezerwacji[/]").Centered())
+        .AddColumn(new TableColumn("[white]Różnych wydarzeń[/]").Centered());
 
         foreach (var user in userActivity)
         {
-            Console.WriteLine($"{user.Username,-20} {user.TotalReservations,-18} {user.EventsCount,-18}");
+            table.AddRow(
+            user.Username,
+            user.TotalReservations.ToString(),
+            user.EventsCount.ToString());
+
         }
+
+        AnsiConsole.Render(table);
+        AnsiConsole.MarkupLine("\n[grey]Naciśnij dowolny klawisz, aby kontynuować...[/]");
+        Console.ReadKey();
     }
 
     static void GenerateFinancialReport()
     {
-        ConsoleHelper.PrintHeader("RAPORT FINANSOWY");
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]RAPORT FINANSOWY[/]").RuleStyle("grey").Centered());
 
         var events = _eventService.GetAllEvents();
         var reservations = _reservationService.GetAllReservations();
 
         decimal totalRevenue = 0;
-        Console.WriteLine($"{"Nazwa wydarzenia",-40} {"Przychód",-15} {"Liczba rezerwacji",-20}");
-        Console.WriteLine(new string('=', 75));
+
+        var table = new Table()
+        .Border(TableBorder.Rounded)
+        .BorderColor(Color.Grey)
+        .Title("[yellow]Przychody z wydarzeń[/]")
+        .AddColumn(new TableColumn("[white]Nazwa wydarzenia[/]").LeftAligned())
+        .AddColumn(new TableColumn("[white]Przychód[/]").Centered())
+        .AddColumn(new TableColumn("[white]Liczba rezerwacji[/]").Centered());
 
         foreach (var eventItem in events)
         {
@@ -402,15 +516,28 @@ class Program
             var eventRevenue = eventReservations.Count * eventItem.Price;
             totalRevenue += eventRevenue;
 
-            Console.WriteLine($"{eventItem.Name,-40} {eventRevenue.ToString("C"),-15} {eventReservations.Count,-20}");
+            table.AddRow(
+                eventItem.Name,
+                eventRevenue.ToString("C"),
+                eventReservations.Count.ToString()
+            );
         }
 
-        Console.WriteLine($"\nŁączny przychód: {totalRevenue.ToString("C")}");
+        AnsiConsole.Render(table);
+
+        var panel = new Panel($"[green]{totalRevenue.ToString("C")}[/]")
+            .Header("[white]Łączny przychód:[/]")
+            .BorderColor(Color.Gold1);
+
+        AnsiConsole.Write(panel);
+        AnsiConsole.MarkupLine("\n[grey]Naciśnij dowolny klawisz, aby kontynuować...[/]");
+        Console.ReadKey();
     }
 
     static void GeneratePopularityReport()
     {
-        ConsoleHelper.PrintHeader("RAPORT POPULARNOŚCI WYDARZEŃ");
+        Console.Clear();
+        AnsiConsole.Write(new Rule("[red]RAPORT POPULARNOŚCI[/]").RuleStyle("grey").Centered());
 
         var events = _eventService.GetAllEvents();
         var reservations = _reservationService.GetAllReservations();
@@ -419,18 +546,63 @@ class Program
             .Select(e => new
             {
                 Event = e,
-                ReservationsCount = reservations.Count(r => r.EventId == e.Id)
+                ReservationsCount = reservations.Count(r => r.EventId == e.Id),
+                OccupancyRate = (double)reservations.Count(r => r.EventId == e.Id) / e.MaxParticipants * 100
             })
             .OrderByDescending(x => x.ReservationsCount)
             .ToList();
 
-        Console.WriteLine($"{"Miejsce",-10} {"Nazwa wydarzenia",-40} {"Liczba rezerwacji",-20}");
-        Console.WriteLine(new string('=', 70));
+        var table = new Table()
+       .Border(TableBorder.Rounded)
+       .BorderColor(Color.Grey)
+       .Title("[yellow]Ranking popularności wydarzeń[/]")
+       .AddColumn(new TableColumn("[white]Co to jest[/]").Centered())
+       .AddColumn(new TableColumn("[white]Miejsce[/]").Centered())
+       .AddColumn(new TableColumn("[white]Nazwa wydarzenia[/]").LeftAligned())
+       .AddColumn(new TableColumn("[white]Liczba rezerwacji[/]").Centered())
+       .AddColumn(new TableColumn("[white]Procent udzialu[/]").Centered());
 
         for (int i = 0; i < eventPopularity.Count; i++)
         {
-            Console.WriteLine($"{i + 1,-10} {eventPopularity[i].Event.Name,-40} {eventPopularity[i].ReservationsCount,-20}");
+            
+            string occupancyColor = "";
+            switch (eventPopularity[i].OccupancyRate)
+            {
+                case 90: occupancyColor = "red"; break;
+                case 70: occupancyColor = "yellow"; break;
+                case 50: occupancyColor = "green"; break;
+                default: occupancyColor = "white"; break;
+
+            }
+
+            
+            table.AddRow(
+                (i + 1).ToString(),
+                eventPopularity[i].Event.Location,
+                eventPopularity[i].Event.Name,
+                eventPopularity[i].ReservationsCount.ToString(),
+                $"[{occupancyColor}]{eventPopularity[i].OccupancyRate:0}%[/]"
+            );
         }
+
+        AnsiConsole.Render(table);
+
+        var statsPanel = new Panel(
+            new Rows(
+                new Text($"Łączna liczba wydarzeń: {events.Count}"),
+                new Text($"Łączna liczba rezerwacji: {reservations.Count}"),
+                new Text($"Średnie obłożenie: {eventPopularity.Average(x => x.OccupancyRate):0}%")
+            ))
+        {
+            Border = BoxBorder.Rounded,
+            BorderStyle = new Style(Color.Grey),
+            Header = new PanelHeader("[white]Podsumowanie[/]"),
+            Padding = new Padding(2, 1, 2, 1)
+        };
+
+        AnsiConsole.Write(statsPanel);
+        AnsiConsole.MarkupLine("\n[grey]Naciśnij dowolny klawisz, aby kontynuować...[/]");
+        Console.ReadKey();
     }
 
 }

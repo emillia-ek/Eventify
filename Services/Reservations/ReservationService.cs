@@ -9,6 +9,7 @@ using Eventify.Events;
 using Eventify.Models.Events;
 using Eventify.Services.Events;
 using Eventify.Utils;
+using Spectre.Console;
 
 namespace Eventify.Services.Reservations
 {
@@ -33,7 +34,8 @@ namespace Eventify.Services.Reservations
             var ev = _eventService.GetEventById(eventId); // Pobieramy wydarzenie z EventService
             if (ev == null)
             {
-                Console.WriteLine($"Nie znaleziono wydarzenia o ID {eventId}. Rezerwacja niemożliwa.");
+                
+                ConsoleHelper.PrintError($"Nie znaleziono wydarzenia o ID {eventId}. Rezerwacja niemożliwa.");
                 return;
             }
 
@@ -41,7 +43,8 @@ namespace Eventify.Services.Reservations
             var existing = _reservations.FirstOrDefault(r => r.Username == username && r.EventId == eventId);
             if (existing != null)
             {
-                Console.WriteLine("Masz już rezerwację na to wydarzenie!");
+                
+                ConsoleHelper.PrintInfo("Masz już rezerwację na to wydarzenie!");
                 return;
             }
 
@@ -56,7 +59,8 @@ namespace Eventify.Services.Reservations
             _reservations.Add(reservation);
             ReservationEvents.RaiseReservationCreated(username, eventId);
             SaveReservations();
-            Console.WriteLine("Rezerwacja zakończona sukcesem!");
+            
+            ConsoleHelper.PrintSuccess("Rezerwacja zakończona sukcesem!");
         }
 
         public void ShowUserReservations(string username)
@@ -64,11 +68,13 @@ namespace Eventify.Services.Reservations
             var userRes = _reservations.Where(r => r.Username == username).ToList();
             if (!userRes.Any())
             {
-                Console.WriteLine("Brak rezerwacji.");
+                
+                ConsoleHelper.PrintInfo("Nie masz jeszcze rezerwacji.");
                 return;
             }
 
-            Console.WriteLine($"\nTwoje rezerwacje:");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]TWOJE REZERWACJE[/]").RuleStyle("grey").Centered());
             foreach (var res in userRes)
             {
                 res.Display();
@@ -84,22 +90,38 @@ namespace Eventify.Services.Reservations
         }
         public void ShowAllReservations()
         {
-            ConsoleHelper.PrintHeader("WSZYSTKIE REZERWACJE");
+            Console.Clear();
+            AnsiConsole.Write(new Rule("[red]WSZYTSKIE REZERWACJE[/]").RuleStyle("grey").Centered());
 
             if (_reservations.Count == 0)
             {
-                Console.WriteLine("Brak rezerwacji w systemie.");
+                
+                AnsiConsole.MarkupLine("[grey]Brak rezerwacji w systemie.[/]");
                 return;
             }
+
+            
 
             foreach (var reservation in _reservations)
             {
                 var eventItem = _eventService.GetEventById(reservation.EventId);
-                Console.WriteLine($"ID Rezerwacji: {reservation.Id}");
-                Console.WriteLine($"Wydarzenie:  (ID: {reservation.EventId})");
-                Console.WriteLine($"Użytkownik: {reservation.Username}");
-                Console.WriteLine($"Data rezerwacji: {reservation.ReservedAt}");
-                Console.WriteLine(new string('-', 40));
+
+                var panel = new Panel(
+                    new Rows(
+                        new Text($"ID Rezerwacji: {reservation.Id}"),
+                        new Text($"ID wydarzenia: {reservation.EventId}"),
+                        new Text($"Użytkownik: {reservation.Username}"),
+                        new Text($"Data rezerwacji: {reservation.ReservedAt}")
+                    //AnsiConsole.MarkupLine("[yellow]Anulowano usuwanie wydarzenia.[/]");
+                    ))
+                {
+                    Border = BoxBorder.Rounded,
+                    Header = new PanelHeader($"[blue]{reservation.Username}[/]"),
+                    Padding = new Padding(1, 1, 1, 1)
+                };
+
+                AnsiConsole.Write(panel);
+                AnsiConsole.WriteLine();
             }
         }
 
@@ -115,7 +137,8 @@ namespace Eventify.Services.Reservations
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Błąd podczas wczytywania rezerwacji: " + ex.Message);
+                    ConsoleHelper.PrintError($"Błąd podczas wczytywania rezerwacji: {ex.Message}");
+                    
                 }
             }
         }
@@ -130,7 +153,8 @@ namespace Eventify.Services.Reservations
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Błąd zapisu rezerwacji: {ex.Message}");
+                
+                ConsoleHelper.PrintError($"Błąd zapisu rezerwacji: {ex.Message}");
             }
         }
     }

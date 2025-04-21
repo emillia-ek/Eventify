@@ -1,89 +1,89 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\",
+  "WorkspaceRootPath": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|c:\\users\\emili\\onedrive\\dokumenty\\eventify\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventSerializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventSerializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Events\\EventSerializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Reservations\\ReservationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Reservations\\ReservationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Events\\EventService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\RegularUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\RegularUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\Admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\Admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventConsoleUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Events\\EventConsoleUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\ConsoleHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Utils\\ConsoleHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\Manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\Manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Events\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Concert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Events\\Concert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Events\\ReservationEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Events\\ReservationEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Conference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Events\\Conference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Auth\\RBACService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Auth\\RBACService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Data\\users.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Data\\users.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Auth\\AuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Auth\\AuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Auth\\AuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Interfaces\\ILoggable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Conference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Events\\Conference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Events\\ReservationEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Events\\ReservationEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|c:\\users\\hanna\\documents\\github\\eventify1\\services\\events\\eventconsoleui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:services\\events\\eventconsoleui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Events\\EventService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Reservations\\ReservationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Reservations\\ReservationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\ConsoleHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Utils\\ConsoleHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Interfaces\\ILoggable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Interfaces\\ILoggable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\FIleManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\RegularUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\RegularUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\Admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\Admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\Manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Accounts\\Manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Events\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Concert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Models\\Events\\Concert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Auth\\RBACService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Services\\Auth\\RBACService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Data\\users.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Data\\users.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\FIleManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Utils\\FIleManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BAAE00B9-E605-4D32-B123-EF73F894F8FE}|Eventify.csproj|solutionrelative:Utils\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -94,67 +94,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "EventSerializer.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventSerializer.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventSerializer.cs",
               "RelativeDocumentMoniker": "Services\\Events\\EventSerializer.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventSerializer.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventSerializer.cs",
               "RelativeToolTip": "Services\\Events\\EventSerializer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowAkAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T22:18:51.644Z"
+              "WhenOpened": "2025-04-18T22:18:51.644Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Reservation.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "Models\\Reservation.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Reservation.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Reservation.cs",
               "RelativeToolTip": "Models\\Reservation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAoAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T21:16:46.946Z"
+              "WhenOpened": "2025-04-18T21:16:46.946Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "ReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Reservations\\ReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Reservations\\ReservationService.cs",
               "RelativeDocumentMoniker": "Services\\Reservations\\ReservationService.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Reservations\\ReservationService.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Reservations\\ReservationService.cs",
               "RelativeToolTip": "Services\\Reservations\\ReservationService.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwEsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAADwv5sAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T20:52:51.935Z"
+              "WhenOpened": "2025-04-18T20:52:51.935Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "EventService.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventService.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventService.cs",
               "RelativeDocumentMoniker": "Services\\Events\\EventService.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventService.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventService.cs",
               "RelativeToolTip": "Services\\Events\\EventService.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowDcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAmwIUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T09:52:39.838Z"
+              "WhenOpened": "2025-04-06T09:52:39.838Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "RegularUser.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\RegularUser.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\RegularUser.cs",
               "RelativeDocumentMoniker": "Models\\Accounts\\RegularUser.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\RegularUser.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\RegularUser.cs",
               "RelativeToolTip": "Models\\Accounts\\RegularUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -162,11 +170,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "Admin.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\Admin.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\Admin.cs",
               "RelativeDocumentMoniker": "Models\\Accounts\\Admin.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\Admin.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\Admin.cs",
               "RelativeToolTip": "Models\\Accounts\\Admin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -174,48 +182,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "EventConsoleUI.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventConsoleUI.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventConsoleUI.cs",
               "RelativeDocumentMoniker": "Services\\Events\\EventConsoleUI.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Events\\EventConsoleUI.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Events\\EventConsoleUI.cs",
               "RelativeToolTip": "Services\\Events\\EventConsoleUI.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAAI4AAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAOkAAAAAAAAAAAAcwPIAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T09:53:35.424Z"
+              "WhenOpened": "2025-04-06T09:53:35.424Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Program.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAEYBAAAAAAAAAAAQwFwBAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAEACAAAAAAAAAAAiwEoCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-06T09:08:27.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ConsoleHelper.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\ConsoleHelper.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\ConsoleHelper.cs",
               "RelativeDocumentMoniker": "Utils\\ConsoleHelper.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\ConsoleHelper.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\ConsoleHelper.cs",
               "RelativeToolTip": "Utils\\ConsoleHelper.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAgwDEAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T09:31:14.132Z"
+              "WhenOpened": "2025-04-06T09:31:14.132Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Manager.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\Manager.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\Manager.cs",
               "RelativeDocumentMoniker": "Models\\Accounts\\Manager.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\Manager.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\Manager.cs",
               "RelativeToolTip": "Models\\Accounts\\Manager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -223,11 +233,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Event.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Event.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Event.cs",
               "RelativeDocumentMoniker": "Models\\Events\\Event.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Event.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Event.cs",
               "RelativeToolTip": "Models\\Events\\Event.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAIwAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -235,11 +245,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Concert.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Concert.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Concert.cs",
               "RelativeDocumentMoniker": "Models\\Events\\Concert.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Concert.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Concert.cs",
               "RelativeToolTip": "Models\\Events\\Concert.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -247,35 +257,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 4,
               "Title": "ReservationEvents.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Events\\ReservationEvents.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Events\\ReservationEvents.cs",
               "RelativeDocumentMoniker": "Events\\ReservationEvents.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Events\\ReservationEvents.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Events\\ReservationEvents.cs",
               "RelativeToolTip": "Events\\ReservationEvents.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T20:47:26.136Z"
+              "WhenOpened": "2025-04-18T20:47:26.136Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 3,
               "Title": "Conference.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Conference.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Conference.cs",
               "RelativeDocumentMoniker": "Models\\Events\\Conference.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Events\\Conference.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Events\\Conference.cs",
               "RelativeToolTip": "Models\\Events\\Conference.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwA4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T09:50:46.357Z"
+              "WhenOpened": "2025-04-06T09:50:46.357Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "RBACService.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Auth\\RBACService.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Auth\\RBACService.cs",
               "RelativeDocumentMoniker": "Services\\Auth\\RBACService.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Auth\\RBACService.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Auth\\RBACService.cs",
               "RelativeToolTip": "Services\\Auth\\RBACService.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAQwB8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -283,11 +295,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "users.txt",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Data\\users.txt",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Data\\users.txt",
               "RelativeDocumentMoniker": "Data\\users.txt",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Data\\users.txt",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Data\\users.txt",
               "RelativeToolTip": "Data\\users.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
@@ -295,35 +307,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 1,
               "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Auth\\AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Auth\\AuthService.cs",
               "RelativeDocumentMoniker": "Services\\Auth\\AuthService.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Services\\Auth\\AuthService.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Services\\Auth\\AuthService.cs",
               "RelativeToolTip": "Services\\Auth\\AuthService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAIwA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T09:17:13.861Z"
+              "WhenOpened": "2025-04-06T09:17:13.861Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 2,
               "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\User.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\User.cs",
               "RelativeDocumentMoniker": "Models\\Accounts\\User.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Models\\Accounts\\User.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Models\\Accounts\\User.cs",
               "RelativeToolTip": "Models\\Accounts\\User.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBMAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T09:13:46.655Z"
+              "WhenOpened": "2025-04-06T09:13:46.655Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 11,
               "Title": "ILoggable.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Interfaces\\ILoggable.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Interfaces\\ILoggable.cs",
               "RelativeDocumentMoniker": "Interfaces\\ILoggable.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Interfaces\\ILoggable.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Interfaces\\ILoggable.cs",
               "RelativeToolTip": "Interfaces\\ILoggable.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -333,9 +347,9 @@
               "$type": "Document",
               "DocumentIndex": 19,
               "Title": "FIleManager.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\FIleManager.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\FIleManager.cs",
               "RelativeDocumentMoniker": "Utils\\FIleManager.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\FIleManager.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\FIleManager.cs",
               "RelativeToolTip": "Utils\\FIleManager.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAQwBsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -345,9 +359,9 @@
               "$type": "Document",
               "DocumentIndex": 20,
               "Title": "PasswordHasher.cs",
-              "DocumentMoniker": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\PasswordHasher.cs",
               "RelativeDocumentMoniker": "Utils\\PasswordHasher.cs",
-              "ToolTip": "C:\\Users\\emili\\OneDrive\\Dokumenty\\Eventify\\Utils\\PasswordHasher.cs",
+              "ToolTip": "C:\\Users\\hanna\\Documents\\GitHub\\Eventify1\\Utils\\PasswordHasher.cs",
               "RelativeToolTip": "Utils\\PasswordHasher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

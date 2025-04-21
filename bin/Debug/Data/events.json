@@ -1,5 +1,4 @@
 [
-  
   {
     "Id": 2,
     "Name": "aasss",
@@ -20,6 +19,39 @@
     "Description": "20202",
     "MaxParticipants": 23,
     "Price": 22,
+    "EventType": "Conference"
+  },
+  {
+    "Id": 4,
+    "Name": "kuchnia grecka",
+    "StartDate": "2025-04-20T21:01:23.2709999+02:00",
+    "EndDate": "2025-04-20T23:01:23.2709999+02:00",
+    "Location": "poznan",
+    "Description": "poznaj kuchnie grecka",
+    "MaxParticipants": 50,
+    "Price": 200,
+    "EventType": "Conference"
+  },
+  {
+    "Id": 5,
+    "Name": "a",
+    "StartDate": "2025-04-22T12:15:47.4136636+02:00",
+    "EndDate": "2025-04-22T14:15:47.4136636+02:00",
+    "Location": "a",
+    "Description": "a",
+    "MaxParticipants": 100,
+    "Price": 0,
+    "EventType": "Concert"
+  },
+  {
+    "Id": 6,
+    "Name": "pociagi",
+    "StartDate": "2025-04-22T13:03:54.5830618+02:00",
+    "EndDate": "2025-04-22T15:03:54.5830618+02:00",
+    "Location": "krakow",
+    "Description": "kocham pociagi",
+    "MaxParticipants": 100,
+    "Price": 30,
     "EventType": "Conference"
   }
 ]

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Eventify.Models.Events;
+using Eventify.Utils;
+using Spectre.Console;
 
 namespace Eventify.Services.Events
 {
@@ -21,31 +24,32 @@ namespace Eventify.Services.Events
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== MENU ZARZĄDZANIA WYDARZENIAMI ===");
-                Console.WriteLine("1. Dodaj nowe wydarzenie");
-                Console.WriteLine("2. Wyświetl wszystkie wydarzenia");
-                Console.WriteLine("3. Usuń wydarzenie");
-                Console.WriteLine("4. Powrót");
-                Console.Write("Wybierz opcję: ");
+                AnsiConsole.Write(new Rule("[red]ZARZĄDZANIE WYDARZENIAMI[/]").RuleStyle("grey").Centered());
 
-                var choice = Console.ReadLine();
+                var choice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("[yellow]Wybierz opcję:[/]")
+                        .PageSize(5)
+                        .AddChoices(new[] {
+                            "Dodaj nowe wydarzenie",
+                            "Wyświetl wszystkie wydarzenia",
+                            "Usuń wydarzenie",
+                            "Powrót"
+                        }));
+
                 switch (choice)
                 {
-                    case "1":
+                    case "Dodaj nowe wydarzenie":
                         AddNewEvent();
                         break;
-                    case "2":
+                    case "Wyświetl wszystkie wydarzenia":
                         DisplayAllEvents();
                         break;
-                    case "3":
+                    case "Usuń wydarzenie":
                         DeleteEvent();
                         break;
-                    case "4":
+                    case "Powrót":
                         return;
-                    default:
-                        Console.WriteLine("Nieprawidłowy wybór. Naciśnij dowolny klawisz, aby kontynuować...");
-                        Console.ReadKey();
-                        break;
                 }
             }
         }
@@ -53,46 +57,52 @@ namespace Eventify.Services.Events
         private void AddNewEvent()
         {
             Console.Clear();
-            Console.WriteLine("=== DODAWANIE NOWEGO WYDARZENIA ===");
-            Console.WriteLine("1. Koncert");
-            Console.WriteLine("2. Konferencja");
-            Console.Write("Wybierz typ wydarzenia: ");
+            AnsiConsole.Write(new Rule("[red]DODAWANIE NOWEGO WYDARZENIA[/]").RuleStyle("grey").Centered());
 
-            var typeChoice = Console.ReadLine();
-            if (typeChoice != "1" && typeChoice != "2")
+            var eventType = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[yellow]Wybierz typ wydarzenia:[/]")
+                    .AddChoices("Koncert", "Konferencja"));
+
+            var name = AnsiConsole.Ask<string>("[yellow]Nazwa wydarzenia:[/] ");
+
+            var startDate = AnsiConsole.Prompt(
+                new TextPrompt<DateTime>("[yellow]Data rozpoczęcia (dd.MM.yyyy HH:mm):[/] ")
+                    .ValidationErrorMessage("[red]Nieprawidłowy format daty[/]")
+                    .DefaultValue(DateTime.Now.AddDays(1))
+                    .PromptStyle("green"));
+
+            var endDate = AnsiConsole.Prompt(
+                new TextPrompt<DateTime>("[yellow]Data zakończenia (dd.MM.yyyy HH:mm):[/] ")
+                    .ValidationErrorMessage("[red]Nieprawidłowy format daty[/]")
+                    .DefaultValue(startDate.AddHours(2))
+                    .Validate(date =>
+                    {
+                        return date <= startDate
+                            ? ValidationResult.Error("[red]Data zakończenia musi być późniejsza niż data rozpoczęcia[/]")
+                            : ValidationResult.Success();
+                    })
+                    .PromptStyle("green"));
+
+            var location = AnsiConsole.Ask<string>("[yellow]Miejsce:[/] ");
+            var description = AnsiConsole.Ask<string>("[yellow]Opis:[/] ");
+
+            var maxParticipants = AnsiConsole.Prompt(
+                new TextPrompt<int>("[yellow]Maksymalna liczba uczestników:[/] ")
+                    .ValidationErrorMessage("[red]Wprowadź poprawną liczbę[/]")
+                    .DefaultValue(100)
+                    .PromptStyle("green"));
+
+            var price = AnsiConsole.Prompt(
+                new TextPrompt<decimal>("[yellow]Cena:[/] ")
+                    .ValidationErrorMessage("[red]Wprowadź poprawną cenę[/]")
+                    .DefaultValue(0)
+                    .PromptStyle("green"));
+
+            if (eventType == "Koncert")
             {
-                Console.WriteLine("Nieprawidłowy wybór typu wydarzenia.");
-                return;
-            }
-
-            Console.Write("Nazwa wydarzenia: ");
-            string name = Console.ReadLine();
-
-            Console.Write("Data rozpoczęcia (dd.MM.yyyy HH:mm): ");
-            DateTime startDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Data zakończenia (dd.MM.yyyy HH:mm): ");
-            DateTime endDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Miejsce: ");
-            string location = Console.ReadLine();
-
-            Console.Write("Opis: ");
-            string description = Console.ReadLine();
-
-            Console.Write("Maksymalna liczba uczestników: ");
-            int maxParticipants = int.Parse(Console.ReadLine());
-
-            Console.Write("Cena: ");
-            decimal price = decimal.Parse(Console.ReadLine());
-
-            if (typeChoice == "1") // Koncert
-            {
-                Console.Write("Wykonawca: ");
-                string artist = Console.ReadLine();
-
-                Console.Write("Gatunek muzyczny: ");
-                string musicGenre = Console.ReadLine();
+                var artist = AnsiConsole.Ask<string>("[yellow]Wykonawca:[/] ");
+                var musicGenre = AnsiConsole.Ask<string>("[yellow]Gatunek muzyczny:[/] ");
 
                 var concert = new Concert(0, name, startDate, endDate, location,
                                        description, maxParticipants, price,
@@ -101,20 +111,28 @@ namespace Eventify.Services.Events
             }
             else // Konferencja
             {
-                Console.Write("Temat konferencji: ");
-                string theme = Console.ReadLine();
+                var theme = AnsiConsole.Ask<string>("[yellow]Temat konferencji:[/] ");
 
-                Console.WriteLine("Prelegenci (wprowadź jednego prelegenta na linię, zakończ pustą linią):");
+                AnsiConsole.MarkupLine("[yellow]Prelegenci (wprowadź jednego prelegenta na linię, zakończ pustą linią):[/]");
                 var speakers = new List<string>();
-                string speaker;
-                do
+
+                while (true)
                 {
-                    speaker = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(speaker))
+                    // Używamy TextPrompt z możliwością pustego wprowadzenia
+                    var speaker = AnsiConsole.Prompt(
+                        new TextPrompt<string>("[grey]Prelegent (Enter aby zakończyć):[/]")
+                            .AllowEmpty());
+
+                    if (string.IsNullOrWhiteSpace(speaker))
                     {
-                        speakers.Add(speaker);
+                        break;
                     }
-                } while (!string.IsNullOrWhiteSpace(speaker));
+
+                    speakers.Add(speaker);
+                    AnsiConsole.MarkupLine($"[grey]Dodano prelegenta: {speaker}[/]");
+                }
+
+                AnsiConsole.MarkupLine("[green]Zakończono dodawanie prelegentów.[/]");
 
                 var conference = new Conference(0, name, startDate, endDate, location,
                                              description, maxParticipants, price,
@@ -122,37 +140,49 @@ namespace Eventify.Services.Events
                 _eventService.AddEvent(conference);
             }
 
-            Console.WriteLine("Wydarzenie zostało dodane pomyślnie!");
+            
+            ConsoleHelper.PrintSuccess("Wydarzenie zostało dodane pomyślnie!");
             Console.ReadKey();
         }
 
         public void DisplayAllEvents(bool waitForUserInput = true)
         {
             Console.Clear();
-            Console.WriteLine("=== LISTA WYDARZEŃ ===");
-            Console.WriteLine();
+            AnsiConsole.Write(new Rule("[red]LISTA WYDARZEŃ[/]").RuleStyle("grey").Centered());
 
-            var events = _eventService.GetAllEvents()?.OrderBy(e => e.Id).ToList();
-
-            if (events == null || !events.Any())
+            var events = _eventService.GetAllEvents();
+            if (events == null || events.Count == 0)
             {
-                Console.WriteLine("Brak dostępnych wydarzeń.");
+                AnsiConsole.MarkupLine("[grey]Brak dostępnych wydarzeń.[/]");
             }
             else
             {
+                var table = new Table()
+                    .Border(TableBorder.Rounded)
+                    .BorderColor(Color.Grey)
+                    .Title("[yellow]Dostępne wydarzenia[/]")
+                    .AddColumn(new TableColumn("[white]ID[/]").Centered())
+                    .AddColumn(new TableColumn("[white]Nazwa[/]"))
+                    .AddColumn(new TableColumn("[white]Data[/]").Centered())
+                    .AddColumn(new TableColumn("[white]Miejsce[/]"))
+                    .AddColumn(new TableColumn("[white]Typ[/]").Centered());
+
                 foreach (var ev in events)
                 {
-                    Console.WriteLine(new string('-', 50));
-                    ev.DisplayEventDetails();
-                    Console.WriteLine();
+                    var type = ev is Concert ? "\u266b Koncert" : "\u058e Konferencja";//zamienic na unicode ->  u266b -nutka; u266f
+                    table.AddRow(
+                        ev.Id.ToString(),
+                        ev.Name,
+                        ev.StartDate.ToString("g", CultureInfo.CurrentCulture),
+                        ev.Location,
+                        type);
                 }
+
+                AnsiConsole.Render(table); //to dziala i bym nie zmieniala tbh
             }
 
-            if (waitForUserInput)
-            {
-                Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
-                Console.ReadKey();
-            }
+            AnsiConsole.MarkupLine("\n[grey]Naciśnij dowolny klawisz, aby kontynuować...[/]");
+            Console.ReadKey();
         }
 
 
@@ -160,40 +190,83 @@ namespace Eventify.Services.Events
         private void DeleteEvent()
         {
             Console.Clear();
-            Console.WriteLine("=== USUWANIE WYDARZENIA ===");
+            AnsiConsole.Write(new Rule("[red]USUWANIE WYDARZENIA[/]").RuleStyle("grey").Centered());
 
             var events = _eventService.GetAllEvents();
             if (events.Count == 0)
             {
-                Console.WriteLine("Brak wydarzeń do usunięcia.");
+                AnsiConsole.MarkupLine("[grey]Brak wydarzeń do usunięcia.[/]");
                 Console.ReadKey();
                 return;
             }
 
-            Console.WriteLine("Dostępne wydarzenia:");
-            foreach (var ev in events)
-            {
-                Console.WriteLine($"{ev.Id}. {ev.Name} ({ev.StartDate.ToShortDateString()})");
-            }
+            var eventChoices = events.Select(e =>
+                new { Id = e.Id, Display = $"{e.Name} ({e.StartDate:dd.MM.yyyy HH:mm})" })
+                .ToList();
 
-            Console.Write("\nPodaj ID wydarzenia do usunięcia: ");
-            if (int.TryParse(Console.ReadLine(), out int id))
+            var selectedEvent = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[yellow]Wybierz wydarzenie do usunięcia:[/]")
+                    .PageSize(10)
+                    .AddChoices(eventChoices.Select(ec => ec.Display)));
+
+            var eventId = eventChoices.First(ec => ec.Display == selectedEvent).Id;
+
+            if (AnsiConsole.Confirm($"Czy na pewno chcesz usunąć wydarzenie [red]'{selectedEvent}'[/]?"))
             {
-                if (_eventService.DeleteEvent(id))
+                if (_eventService.DeleteEvent(eventId))
                 {
-                    Console.WriteLine("Wydarzenie zostało usunięte pomyślnie!");
+                    
+                    ConsoleHelper.PrintSuccess("Wydarzenie zostało usunięte pomyślnie!");
+                   // EventDeletionEvents.RaiseEventDeleted(eventId, selectedEvent.Name, affectedUsers);
                 }
                 else
                 {
-                    Console.WriteLine("Nie znaleziono wydarzenia o podanym ID.");
+                    ConsoleHelper.PrintError("Nie udało się usunąć wydarzenia.");
                 }
             }
             else
             {
-                Console.WriteLine("Nieprawidłowy format ID.");
+                
+                ConsoleHelper.PrintInfo("Anulowano usuwanie wydarzenia.");
             }
 
-            Console.ReadKey();
+
+
+             Console.ReadKey();
+        }
+    }
+
+    //zaczete zdarzenie - na razie nic nie robi
+    public static class EventDeletionEvents
+    {
+        // Delegat dla zdarzenia usuwania wydarzenia
+        public delegate void EventDeletedHandler(DeletedEventInfo deletedEventInfo);
+
+        // Zdarzenie wywoływane przy usuwaniu wydarzenia
+        public static event EventDeletedHandler OnEventDeleted;
+
+        // Metoda do wywoływania zdarzenia
+        public static void RaiseEventDeleted(int eventId, string eventName, List<string> affectedUsers)
+        {
+            OnEventDeleted?.Invoke(new DeletedEventInfo(eventId, eventName, affectedUsers));
+        }
+    }
+
+    // Klasa przechowująca informacje o usuniętym wydarzeniu
+    public class DeletedEventInfo
+    {
+        public int EventId { get; }
+        public string EventName { get; }
+        public List<string> AffectedUsers { get; }
+        public DateTime DeletionTime { get; }
+
+        public DeletedEventInfo(int eventId, string eventName, List<string> affectedUsers)
+        {
+            EventId = eventId;
+            EventName = eventName;
+            AffectedUsers = affectedUsers;
+            DeletionTime = DateTime.Now;
         }
     }
 }

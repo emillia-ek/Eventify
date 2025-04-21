@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Eventify.Models.Events;
 using System.IO;
 using System.Text.Json;
+using Eventify.Utils;
 
 namespace Eventify.Services.Events
 {
@@ -92,7 +93,8 @@ namespace Eventify.Services.Events
                                 ev = JsonSerializer.Deserialize<Conference>(item.GetRawText());
                                 break;
                             default:
-                                Console.WriteLine($"Nieznany typ wydarzenia: {eventType}");
+                                
+                                ConsoleHelper.PrintError($"Nieznany typ wydarzenia: {eventType}");
                                 break;
                         }
 
@@ -114,7 +116,7 @@ namespace Eventify.Services.Events
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Błąd podczas wczytywania wydarzeń: " + ex.Message);
+                    ConsoleHelper.PrintError("Błąd podczas wczytywania wydarzeń: " + ex.Message);
                 }
             }
         }
@@ -131,7 +133,7 @@ namespace Eventify.Services.Events
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Błąd zapisu wydarzeń: {ex.Message}");
+                ConsoleHelper.PrintError($"Błąd zapisu wydarzeń: {ex.Message}");
             }
         }
     }
