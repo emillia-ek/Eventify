@@ -1,16 +1,5 @@
 [
   {
-    "Id": 2,
-    "Name": "aasss",
-    "StartDate": "2020-02-20T11:11:00",
-    "EndDate": "2020-02-21T12:11:00",
-    "Location": "poznan",
-    "Description": "sss",
-    "MaxParticipants": 34,
-    "Price": 33,
-    "EventType": "Concert"
-  },
-  {
     "Id": 3,
     "Name": "ss",
     "StartDate": "2020-03-20T00:00:00",
@@ -53,5 +42,16 @@
     "MaxParticipants": 100,
     "Price": 30,
     "EventType": "Conference"
+  },
+  {
+    "Id": 7,
+    "Name": "a",
+    "StartDate": "2025-04-22T15:00:43.7176158+02:00",
+    "EndDate": "2025-04-22T17:00:43.7176158+02:00",
+    "Location": "a",
+    "Description": "a",
+    "MaxParticipants": 100,
+    "Price": 0,
+    "EventType": "Concert"
   }
 ]

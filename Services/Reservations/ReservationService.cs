@@ -20,12 +20,22 @@ namespace Eventify.Services.Reservations
         private List<Reservation> _reservations = new List<Reservation>();
         private List<Event> _events = new List<Event>();
         private EventService _eventService;
+        private List<(string username, int eventId)> _cancelledEvents = new List<(string, int)>();
 
         public ReservationService(EventService eventService) // Wstrzykujemy zależność EventService
         {
             _reservations = new List<Reservation>();
             _eventService = eventService; // Inicjalizacja EventService
+            ReservationEvents.OnDeletion += HandleDeletionNotification;
             LoadReservations();
+        }
+
+
+        private void HandleDeletionNotification(string username, int eventId)
+        {
+            
+           // AnsiConsole.Write($"[green]Uzytkowniku {username}, wydarzenie {eventId} zostalo odwolane. Przepraszamy[/]");
+            _cancelledEvents.Add((username, eventId));
         }
 
         public void Reserve(string username, int eventId)
@@ -62,23 +72,40 @@ namespace Eventify.Services.Reservations
             
             ConsoleHelper.PrintSuccess("Rezerwacja zakończona sukcesem!");
         }
+        
 
         public void ShowUserReservations(string username)
         {
+            var userCancellations = _cancelledEvents
+        .Where(x => x.username == username)
+        .ToList();
+
+            if (userCancellations.Any())
+            {
+                foreach (var cancel in userCancellations)
+                {
+                    AnsiConsole.MarkupLine($"[green]Uwaga: Wydarzenie {cancel.eventId} zostało odwołane. Przepraszamy.[/]");
+                }
+                // Clear displayed cancellations
+                _cancelledEvents.RemoveAll(x => x.username == username);
+            }
+
             var userRes = _reservations.Where(r => r.Username == username).ToList();
             if (!userRes.Any())
             {
-                
                 ConsoleHelper.PrintInfo("Nie masz jeszcze rezerwacji.");
                 return;
             }
 
             Console.Clear();
             AnsiConsole.Write(new Rule("[red]TWOJE REZERWACJE[/]").RuleStyle("grey").Centered());
+
             foreach (var res in userRes)
             {
                 res.Display();
             }
+
+
         }
         public List<Reservation> GetAllReservations()
         {

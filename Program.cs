@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 
 
 
+
 class Program
 {
 
@@ -32,6 +33,7 @@ class Program
 
         Console.Title = "Eventify - System Zarządzania Wydarzeniami";
         Console.CursorVisible = false;
+        Notifier notifier = new Notifier();
         ShowMainMenu();
     }
 
@@ -325,6 +327,8 @@ class Program
                     "Moje rezerwacje",
                     "Wyloguj się"
                 });
+
+            
 
             var choice = AnsiConsole.Prompt(menu);
 

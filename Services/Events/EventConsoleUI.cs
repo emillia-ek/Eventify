@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Eventify.Models.Events;
 using Eventify.Utils;
 using Spectre.Console;
+using Eventify.NotificationSystem;
 
 namespace Eventify.Services.Events
 {
@@ -185,7 +186,11 @@ namespace Eventify.Services.Events
             Console.ReadKey();
         }
 
+        public event EventHandler<ConcertDeletedEventArgs> ConcertDeleted;
 
+        //private List<string> concerts = new List<string>();
+
+        
 
         private void DeleteEvent()
         {
@@ -216,7 +221,7 @@ namespace Eventify.Services.Events
             {
                 if (_eventService.DeleteEvent(eventId))
                 {
-                    
+                    ConcertDeleted?.Invoke(this, new ConcertDeletedEventArgs(eventId));
                     ConsoleHelper.PrintSuccess("Wydarzenie zostało usunięte pomyślnie!");
                    // EventDeletionEvents.RaiseEventDeleted(eventId, selectedEvent.Name, affectedUsers);
                 }

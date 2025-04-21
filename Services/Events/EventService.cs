@@ -7,9 +7,20 @@ using Eventify.Models.Events;
 using System.IO;
 using System.Text.Json;
 using Eventify.Utils;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Eventify.Services.Events
 {
+    class Notifier
+    {
+        public delegate void NotifyWhenDeletedHandler(string message);
+        public event NotifyWhenDeletedHandler OnDeletion;
+
+        public void SendNotification(string message)
+        {
+            OnDeletion?.Invoke(message);
+        }
+    }
     public class EventService
     {
         private const string EventsFilePath = "Data/events.json";
@@ -55,9 +66,13 @@ namespace Eventify.Services.Events
             return _events.FirstOrDefault(e => e.Id == id);
         }
 
+        
+
 
         public bool DeleteEvent(int id)
         {
+            
+
             var toRemove = _events.FirstOrDefault(e => e.Id == id);
             if (toRemove != null)
             {
@@ -65,6 +80,8 @@ namespace Eventify.Services.Events
                 SaveEvents();
                 return true;
             }
+
+
             return false;
         }
 
