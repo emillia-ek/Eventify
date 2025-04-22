@@ -1,8 +1,8 @@
-# Eventify 🎫
+# Eventify 
 
 **Eventify** to konsolowa aplikacja do zarządzania wydarzeniami i rezerwacjami. Pozwala użytkownikom przeglądać wydarzenia, rezerwować miejsca, a menedżerom i administratorom — zarządzać wydarzeniami oraz użytkownikami.
 
-## 🔧 Funkcjonalności
+## Funkcjonalności
 
 - Rejestracja i logowanie użytkowników
 - Różne role: Użytkownik, Menedżer, Administrator
@@ -12,12 +12,12 @@
 - Zarządzanie użytkownikami (tylko admin)
 - Generowanie prostych raportów (dla menedżerów/adminów)
 
-## 🖥️ Wymagania systemowe
+## Wymagania systemowe
 
 - .NET SDK 9.0
 - System operacyjny: Windows, macOS lub Linux
 
-## 🚀 Uruchomienie aplikacji
+## Uruchomienie aplikacji
 
 ### 1. Pobranie projektu
 
@@ -36,7 +36,7 @@ dotnet build
 Aby uruchomić aplikację, wpisz:
 
 dotnet run
-👥 Role i dostęp
+Role i dostęp
 
 Użytkownik – przegląda wydarzenia i dokonuje rezerwacji
 Menedżer – zarządza wydarzeniami, generuje raporty
