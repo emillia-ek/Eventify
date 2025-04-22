@@ -32,10 +32,12 @@ cd Eventify
 Zbuduj projekt poleceniem:
 
 dotnet build
-4. Uruchomienie aplikacji
+
+5. Uruchomienie aplikacji
 Aby uruchomić aplikację, wpisz:
 
 dotnet run
+
 Role i dostęp
 
 Użytkownik – przegląda wydarzenia i dokonuje rezerwacji
