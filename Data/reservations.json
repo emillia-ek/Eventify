@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "Id": 1,
+    "Username": "user",
+    "EventId": 2,
+    "ReservedAt": "2025-04-22T21:43:33.7591607+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  },
+  {
+    "Id": 2,
+    "Username": "user",
+    "EventId": 1,
+    "ReservedAt": "2025-04-22T21:43:39.7616114+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  },
+  {
+    "Id": 3,
+    "Username": "user",
+    "EventId": 4,
+    "ReservedAt": "2025-04-22T21:47:47.5574682+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  },
+  {
+    "Id": 4,
+    "Username": "user1",
+    "EventId": 4,
+    "ReservedAt": "2025-04-22T21:48:03.9228761+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  },
+  {
+    "Id": 5,
+    "Username": "user",
+    "EventId": 5,
+    "ReservedAt": "2025-04-22T21:49:35.7978498+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  },
+  {
+    "Id": 6,
+    "Username": "user1",
+    "EventId": 2,
+    "ReservedAt": "2025-04-22T21:50:04.3855321+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  }
+]

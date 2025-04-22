@@ -1,25 +1,46 @@
 [
-    {
-      "Id": 1,
-      "Name": "Tech Future 2025",
-      "StartDate": "2025-06-15T09:00:00",
-      "EndDate": "2025-06-17T17:00:00",
-      "Location": "EXPO Kraków",
-      "Description": "Międzynarodowa konferencja o nowych technologiach i przyszłości cyfryzacji.",
-      "MaxParticipants": 1200,
-      "Price": 800.00,
-      "EventType": "Conference"
-    },
-    {
-      "Id": 2,
-      "Name": "Culinary Future 2025",
-      "StartDate": "2025-06-15T09:00:00",
-      "EndDate": "2025-06-17T17:00:00",
-      "Location": "EXPO Poznan",
-      "Description": "Międzynarodowa konferencja o nowym jedzeniu",
-      "MaxParticipants": 1200,
-      "Price": 500.00,
-      "EventType": "Conference"
-    }
-  ]
-  
+  {
+    "Id": 1,
+    "Name": "Tech Future 2025",
+    "StartDate": "2025-06-15T09:00:00",
+    "EndDate": "2025-06-17T17:00:00",
+    "Location": "EXPO Krak\u00F3w",
+    "Description": "Mi\u0119dzynarodowa konferencja o nowych technologiach i przysz\u0142o\u015Bci cyfryzacji.",
+    "MaxParticipants": 1200,
+    "Price": 800.00,
+    "EventType": "Conference"
+  },
+  {
+    "Id": 2,
+    "Name": "Culinary Future 2025",
+    "StartDate": "2025-06-15T09:00:00",
+    "EndDate": "2025-06-17T17:00:00",
+    "Location": "EXPO Poznan",
+    "Description": "Mi\u0119dzynarodowa konferencja o nowym jedzeniu",
+    "MaxParticipants": 1200,
+    "Price": 500.00,
+    "EventType": "Conference"
+  },
+  {
+    "Id": 5,
+    "Name": "konferencja 1",
+    "StartDate": "2026-06-20T17:00:00",
+    "EndDate": "2026-06-21T18:00:00",
+    "Location": "poznan",
+    "Description": "Nie ma opisu",
+    "MaxParticipants": 1,
+    "Price": 300,
+    "EventType": "Conference"
+  },
+  {
+    "Id": 3,
+    "Name": "Imagine Dragons",
+    "StartDate": "2025-02-20T12:00:00",
+    "EndDate": "2025-02-21T12:00:00",
+    "Location": "dd",
+    "Description": "f",
+    "MaxParticipants": 1,
+    "Price": 12,
+    "EventType": "Concert"
+  }
+]
