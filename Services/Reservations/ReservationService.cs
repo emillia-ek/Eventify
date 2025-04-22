@@ -9,6 +9,7 @@ using Eventify.Models;
 using Eventify.Models.Events;
 using Eventify.Services.Events;
 using Eventify.Utils;
+using Spectre.Console;
 
 namespace Eventify.Services.Reservations
 {
@@ -116,23 +117,24 @@ namespace Eventify.Services.Reservations
 
             if (!userReservations.Any())
             {
-                Console.WriteLine("Brak rezerwacji.");
+                AnsiConsole.MarkupLine("[Pink1]Brak rezerwacji.[/]");
                 return;
             }
 
             foreach (var res in userReservations)
             {
-                
-               
                 var ev = _eventService.GetEventById(res.EventId);
-                Console.WriteLine($"ID Rezerwacji: {res.Id}");
-                Console.WriteLine($"Wydarzenie: {ev?.Name ?? "Nieznane"} (ID: {res.EventId})");
-                Console.WriteLine($"Data: {ev?.StartDate.ToShortDateString() ?? "Nieznana"}");
-                Console.WriteLine($"Status: {(res.IsCancelled ? "ANULOWANA" : "AKTYWNA")}");
-                Console.WriteLine($"Data rezerwacji: {res.ReservedAt}");
-                Console.WriteLine(new string('-', 40));
+
+                AnsiConsole.MarkupLine($"[bold Pink1]ID Rezerwacji:[/] {res.Id}");
+                AnsiConsole.MarkupLine($"[bold Hotpink2]Wydarzenie:[/] {ev?.Name ?? "Nieznane"} (ID: {res.EventId})");
+                AnsiConsole.MarkupLine($"[bold Pink1]Data:[/] {ev?.StartDate.ToShortDateString() ?? "Nieznana"}");
+                AnsiConsole.MarkupLine($"[bold Hotpink2]Status:[/] {(res.IsCancelled ? "[Red]ANULOWANA[/]" : "[Hotpink2]AKTYWNA[/]")}");
+                AnsiConsole.MarkupLine($"[bold Pink1]Data rezerwacji:[/] {res.ReservedAt}");
+                AnsiConsole.MarkupLine(new string('-', 50));
             }
         }
+
+
 
         public List<Reservation> GetAllReservations()
         {
@@ -150,19 +152,20 @@ namespace Eventify.Services.Reservations
 
             if (!_reservations.Any())
             {
-                Console.WriteLine("Brak rezerwacji w systemie.");
+                AnsiConsole.MarkupLine("[Pink1]Brak rezerwacji w systemie.[/]");
                 return;
             }
 
             foreach (var res in _reservations.OrderByDescending(r => r.ReservedAt))
             {
                 var ev = _eventService.GetEventById(res.EventId);
-                Console.WriteLine($"ID: {res.Id}");
-                Console.WriteLine($"Wydarzenie: {ev?.Name ?? "Nieznane"} (ID: {res.EventId})");
-                Console.WriteLine($"Użytkownik: {res.Username}");
-                Console.WriteLine($"Status: {(res.IsCancelled ? "ANULOWANA" : "AKTYWNA")}");
-                Console.WriteLine($"Data rezerwacji: {res.ReservedAt}");
-                Console.WriteLine(new string('-', 40));
+                // Kolory w różnych odcieniach różu dla każdego pola
+                AnsiConsole.MarkupLine($"[bold Hotpink2]ID:[/] {res.Id}");
+                AnsiConsole.MarkupLine($"[bold Pink1]Wydarzenie:[/] {ev?.Name ?? "Nieznane"} (ID: {res.EventId})");
+                AnsiConsole.MarkupLine($"[bold Hotpink2]Użytkownik:[/] {res.Username}");
+                AnsiConsole.MarkupLine($"[bold Pink1]Status:[/] {(res.IsCancelled ? "[Red]ANULOWANA[/]" : "[Hotpink2]AKTYWNA[/]")}");
+                AnsiConsole.MarkupLine($"[bold Hotpink2]Data rezerwacji:[/] {res.ReservedAt}");
+                AnsiConsole.MarkupLine(new string('-', 50));
             }
         }
 

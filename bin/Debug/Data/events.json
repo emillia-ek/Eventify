@@ -1,28 +1,13 @@
 [
   {
     "Id": 1,
-    "Name": "Rock Night",
-    "StartDate": "2025-05-10T20:00:00",
-    "EndDate": "2025-05-10T23:30:00",
-    "Location": "Stadion Narodowy, Warszawa",
-    "Description": "Wieczór rockowych brzmień z najlepszymi zespołami.",
-    "MaxParticipants": 5000,
-    "Price": 150.00,
-    "EventType": "Concert",
-    "Artist": "AC/DC",
-    "MusicGenre": "Rock"
-  },
-  {
-    "Id": 2,
-    "Name": "Digital Future 2025",
+    "Name": "Tech Future 2025",
     "StartDate": "2025-06-15T09:00:00",
     "EndDate": "2025-06-17T17:00:00",
-    "Location": "EXPO Kraków",
-    "Description": "Międzynarodowa konferencja o nowych technologiach i przyszłości cyfryzacji.",
+    "Location": "EXPO Krak\u00F3w",
+    "Description": "Mi\u0119dzynarodowa konferencja o nowych technologiach i przysz\u0142o\u015Bci cyfryzacji.",
     "MaxParticipants": 1200,
     "Price": 800.00,
-    "EventType": "Conference",
-    "Topic": "Technologie przyszłości",
-    "Speaker": "Elon Musk"
+    "EventType": "Conference"
   }
 ]

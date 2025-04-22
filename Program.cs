@@ -9,7 +9,7 @@ using Eventify.Services.Events;
 using Eventify.Services.Reservations;
 using Eventify.Utils;
 using Eventify.Events;
-
+using Spectre.Console;
 
 class Program
 {
@@ -21,12 +21,10 @@ class Program
     private const string UsersFilePath = "Data/users.txt";
     private const string LogFilePath = "Data/user_events.txt";
 
-
     private static void OnReservationCancelled(object sender, Reservation reservation)
     {
-        ConsoleHelper.PrintSuccess($"[INFO] Użytkownik {reservation.Username} anulował rezerwację ID: {reservation.Id}.");
+        AnsiConsole.MarkupLine($"[bold hotpink2][[INFO]][/] Użytkownik [pink1]{reservation.Username}[/] anulował rezerwację ID: [pink1]{reservation.Id}[/].");
     }
-    
 
     static void Main()
     {
@@ -37,14 +35,14 @@ class Program
         AppEvents.UserRegistered += OnUserAction;
         AppEvents.UserDeleted += OnUserAction;
 
-
         ShowMainMenu();
     }
+
     private static void OnUserAction(object sender, UserActionEventArgs e)
     {
         try
         {
-            ConsoleHelper.PrintSuccess($"[EVENT] {e.ActionType} | Użytkownik: {e.Username} | Czas: {e.ActionTime}");
+            //AnsiConsole.MarkupLine($"[bold hotpink2][[EVENT]][/] [pink1]{e.ActionType}[/] | Użytkownik: [pink1]{e.Username}[/] | Czas: [pink1]{e.ActionTime}[/]");
 
             if (!Directory.Exists("Data"))
             {
@@ -52,123 +50,137 @@ class Program
             }
             File.AppendAllText("Data/user_events.txt", $"{e.ActionTime:u} | {e.ActionType} | {e.Username}{Environment.NewLine}");
             File.AppendAllText(LogFilePath, "log");
-
         }
         catch (Exception ex)
         {
-            ConsoleHelper.PrintError($"Błąd podczas zapisywania do pliku: {ex.Message}");
+            AnsiConsole.MarkupLine($"[bold red]Błąd podczas zapisywania do pliku:[/] [pink1]{ex.Message}[/]");
         }
     }
-
 
     static void ShowMainMenu()
     {
         while (true)
         {
+            AnsiConsole.Clear();
             ConsoleHelper.PrintHeader("WITAMY W SYSTEMIE EVENTIFY");
-            Console.WriteLine("1. Zaloguj się");
-            Console.WriteLine("2. Zarejestruj się");
-            Console.WriteLine("3. Wyjdź");
-            Console.Write("\nWybierz opcję: ");
 
-            var choice = Console.ReadLine();
+            var choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[pink1]Wybierz opcję:[/]")
+                    .AddChoices(new[] {
+                        "Zaloguj się",
+                        "Zarejestruj się",
+                        "Wyjdź"
+                    }));
+
             switch (choice)
             {
-                case "1":
+                case "Zaloguj się":
                     Login();
                     break;
-                case "2":
+                case "Zarejestruj się":
                     Register();
                     break;
-                case "3":
+                case "Wyjdź":
                     Environment.Exit(0);
-                    break;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór. Spróbuj ponownie.");
                     break;
             }
         }
     }
+
     static void InitializeDataDirectory()
     {
         if (!Directory.Exists("Data"))
             Directory.CreateDirectory("Data");
     }
+
     static void Login()
     {
+        AnsiConsole.Clear();
         ConsoleHelper.PrintHeader("LOGOWANIE");
-        Console.Write("Nazwa użytkownika: ");
-        var username = Console.ReadLine() ?? "";
-        Console.Write("Hasło: ");
-        var password = ConsoleHelper.ReadPassword();
+
+        var username = AnsiConsole.Ask<string>("[pink1]Nazwa użytkownika:[/] ");
+        var password = AnsiConsole.Prompt(
+            new TextPrompt<string>("[pink1]Hasło:[/] ")
+                .Secret());
 
         _currentUser = _authService.Login(username, password);
 
         if (_currentUser != null)
         {
-            ConsoleHelper.PrintSuccess($"Zalogowano pomyślnie jako {_currentUser.Role}!");
+            AnsiConsole.MarkupLine($"[bold hotpink2]Zalogowano pomyślnie jako [pink1]{_currentUser.Role}[/]![/]");
             AppEvents.OnUserLoggedIn(_currentUser.Username);
             Console.ReadKey();
             ShowUserDashboard();
         }
         else
         {
-            ConsoleHelper.PrintError("Nieprawidłowa nazwa użytkownika lub hasło.");
+            AnsiConsole.MarkupLine("[bold red]Nieprawidłowa nazwa użytkownika lub hasło.[/]");
             Console.ReadKey();
         }
     }
 
     static void Register()
     {
+        AnsiConsole.Clear();
         ConsoleHelper.PrintHeader("REJESTRACJA");
-        Console.Write("Nazwa użytkownika: ");
-        var username = Console.ReadLine() ?? "";
-        Console.Write("Email: ");
-        var email = Console.ReadLine() ?? "";
-        Console.Write("Hasło: ");
-        var password = ConsoleHelper.ReadPassword();
-        Console.Write("Potwierdź hasło: ");
-        var confirmPassword = ConsoleHelper.ReadPassword();
+
+        var username = AnsiConsole.Ask<string>("[pink1]Nazwa użytkownika:[/] ");
+        var email = AnsiConsole.Ask<string>("[pink1]Email:[/] ");
+        var password = AnsiConsole.Prompt(
+            new TextPrompt<string>("[pink1]Hasło:[/] ")
+                .Secret());
+        var confirmPassword = AnsiConsole.Prompt(
+            new TextPrompt<string>("[pink1]Potwierdź hasło:[/] ")
+                .Secret());
 
         if (password != confirmPassword)
         {
-            ConsoleHelper.PrintError("Hasła nie są identyczne!");
+            AnsiConsole.MarkupLine("[bold red]Hasła nie są identyczne![/]");
             Console.ReadKey();
             return;
         }
 
         if (_authService.Register(username, password, email))
         {
-            ConsoleHelper.PrintSuccess("Rejestracja zakończona pomyślnie! Możesz się teraz zalogować.");
+            AnsiConsole.MarkupLine("[bold hotpink2]Rejestracja zakończona pomyślnie! Możesz się teraz zalogować.[/]");
             AppEvents.OnUserRegistered(username);
-            Console.ReadKey();
         }
+        else
+        {
+            AnsiConsole.MarkupLine($"[bold red]Użytkownik o nazwie '{username}' już istnieje![/]");
+        }
+
+        Console.ReadKey();
     }
+
+
     static void ShowAdminMenu()
     {
         while (true)
         {
+            AnsiConsole.Clear();
             ConsoleHelper.PrintHeader("PANEL ADMINISTRATORA");
-            Console.WriteLine("1. Zarządzaj użytkownikami");
-            Console.WriteLine("2. Zarządzaj wydarzeniami");
-            Console.WriteLine("3. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
 
-            var choice = Console.ReadLine();
+            var choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[pink1]Wybierz opcję:[/]")
+                    .AddChoices(new[] {
+                        "Zarządzaj użytkownikami",
+                        "Zarządzaj wydarzeniami",
+                        "Wyloguj się"
+                    }));
+
             switch (choice)
             {
-                case "1":
+                case "Zarządzaj użytkownikami":
                     ShowUserManagementMenu();
                     break;
-                case "2":
+                case "Zarządzaj wydarzeniami":
                     _eventConsoleUI.ShowEventManagementMenu();
                     break;
-                case "3":
+                case "Wyloguj się":
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }
@@ -177,158 +189,177 @@ class Program
     {
         while (true)
         {
-            ConsoleHelper.PrintHeader("ZARZĄDZANIE UŻYTKOWNIKAMI");
-            Console.WriteLine("1. Wyświetl wszystkich użytkowników");
-            Console.WriteLine("2. Usuń użytkownika");
-            Console.WriteLine("3. Powrót");
-            Console.Write("\nWybierz opcję: ");
+            AnsiConsole.Clear();
 
-            var choice = Console.ReadLine();
+            ConsoleHelper.PrintHeader("ZARZĄDZANIE UŻYTKOWNIKAMI");
+
+            var choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[pink1]Wybierz opcję:[/]")
+                    .AddChoices(new[] {
+                        "Wyświetl wszystkich użytkowników",
+                        "Usuń użytkownika",
+                        "Powrót"
+                    }));
+
             switch (choice)
             {
-                case "1":
+                case "Wyświetl wszystkich użytkowników":
                     DisplayAllUsers();
                     break;
-                case "2":
+                case "Usuń użytkownika":
                     DeleteUser();
                     break;
-                case "3":
+                case "Powrót":
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }
 
     static void DisplayAllUsers()
     {
+        AnsiConsole.Clear();
         ConsoleHelper.PrintHeader("LISTA UŻYTKOWNIKÓW");
 
         try
         {
             if (!File.Exists(UsersFilePath))
             {
-                ConsoleHelper.PrintError("Brak pliku z użytkownikami.");
+                AnsiConsole.MarkupLine("[bold red]Brak pliku z użytkownikami.[/]");
+                Console.ReadKey();
                 return;
             }
+
+            var table = new Table();
+            table.AddColumn("[pink1]Nazwa[/]");
+            table.AddColumn("[pink1]Rola[/]");
+            table.AddColumn("[pink1]Email[/]");
 
             var lines = File.ReadAllLines(UsersFilePath);
             foreach (var line in lines)
             {
                 var parts = line.Split('|');
-                Console.WriteLine($"Nazwa: {parts[0]}, Rola: {parts[2]}, Email: {parts[3]}");
+                table.AddRow(parts[0], parts[2], parts[3]);
             }
+
+            AnsiConsole.Write(table);
         }
         catch (Exception ex)
         {
-            ConsoleHelper.PrintError($"Błąd podczas wczytywania użytkowników: {ex.Message}");
+            AnsiConsole.MarkupLine($"[bold red]Błąd podczas wczytywania użytkowników:[/] [pink1]{ex.Message}[/]");
         }
 
-        Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
+        AnsiConsole.MarkupLine("\n[pink1]Naciśnij dowolny klawisz, aby kontynuować...[/]");
         Console.ReadKey();
     }
 
     static void DeleteUser()
     {
-        ConsoleHelper.PrintHeader("USUWANIE UŻYTKOWNIKA");
         DisplayAllUsers();
-
-        Console.Write("\nPodaj nazwę użytkownika do usunięcia: ");
-        var username = Console.ReadLine();
+        var username = AnsiConsole.Ask<string>("\n[pink1]Podaj nazwę użytkownika do usunięcia:[/] ");
 
         if (string.IsNullOrWhiteSpace(username))
         {
-            ConsoleHelper.PrintError("Nie podano nazwy użytkownika.");
+            AnsiConsole.MarkupLine("[bold red]Nie podano nazwy użytkownika.[/]");
             return;
         }
 
         if (username == _currentUser?.Username)
         {
-            ConsoleHelper.PrintError("Nie możesz usunąć swojego własnego konta!");
+            AnsiConsole.MarkupLine("[bold red]Nie możesz usunąć swojego własnego konta![/]");
             return;
         }
 
         if (_authService.DeleteUser(username))
         {
-            ConsoleHelper.PrintSuccess($"Użytkownik {username} został pomyślnie usunięty.");
+            AnsiConsole.MarkupLine($"[bold hotpink2]Użytkownik [pink1]{username}[/] został pomyślnie usunięty.[/]");
             AppEvents.OnUserDeleted(username);
         }
         else
         {
-            ConsoleHelper.PrintError("Nie udało się usunąć użytkownika.");
+            AnsiConsole.MarkupLine("[bold red]Nie udało się usunąć użytkownika.[/]");
         }
 
         Console.ReadKey();
     }
 
-
-
     static void ShowManagerMenu()
     {
         while (true)
         {
+            AnsiConsole.Clear();
             ConsoleHelper.PrintHeader("PANEL MENADŻERA");
-            Console.WriteLine("1. Zarządzaj wydarzeniami");
-            Console.WriteLine("2. Przeglądaj rezerwacje");
-            Console.WriteLine("3. Generuj raporty");
-            Console.WriteLine("4. Wyloguj się");
-            Console.Write("\nWybierz opcję: ");
+            var panel = new Panel("[bold hotpink2]PANEL MENADŻERA[/]")
+                .BorderColor(Color.HotPink2);
+            AnsiConsole.Write(panel);
 
-            var choice = Console.ReadLine();
+            var choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[pink1]Wybierz opcję:[/]")
+                    .AddChoices(new[] {
+                        "Zarządzaj wydarzeniami",
+                        "Przeglądaj rezerwacje",
+                        "Generuj raporty",
+                        "Wyloguj się"
+                    }));
+
             switch (choice)
             {
-                case "1":
+                case "Zarządzaj wydarzeniami":
                     _eventConsoleUI.ShowEventManagementMenu();
                     break;
-                case "2":
+                case "Przeglądaj rezerwacje":
                     _reservationService.ShowAllReservations();
                     Console.ReadKey();
                     break;
-                case "3":
+                case "Generuj raporty":
                     GenerateReports();
                     break;
-                case "4":
+                case "Wyloguj się":
                     _currentUser = null;
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    Console.ReadKey();
-                    break;
             }
         }
     }
+
     static void GenerateReports()
     {
         while (true)
         {
+            AnsiConsole.Clear();
             ConsoleHelper.PrintHeader("GENEROWANIE RAPORTÓW");
-            Console.WriteLine("1. Raport uczestnictwa w wydarzeniach");
-            Console.WriteLine("2. Raport finansowy");
-            Console.WriteLine("3. Raport popularności wydarzeń");
-            Console.WriteLine("4. Powrót");
-            Console.Write("\nWybierz opcję: ");
 
-            var choice = Console.ReadLine();
+            var choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[pink1]Wybierz opcję:[/]")
+                    .AddChoices(new[] {
+                        "Raport uczestnictwa w wydarzeniach",
+                        "Raport finansowy",
+                        "Raport popularności wydarzeń",
+                        "Powrót"
+                    }));
+
             switch (choice)
             {
-                case "1":
+                case "Raport uczestnictwa w wydarzeniach":
+
+                    ConsoleHelper.PrintHeader("GENEROWANIE RAPORTÓW");
                     GenerateUserCountReport();
                     break;
-                case "2":
+                case "Raport finansowy":
+
+                    ConsoleHelper.PrintHeader("GENEROWANIE RAPORTÓW");
                     GenerateFinancialReport();
                     break;
-                case "3":
+                case "Raport popularności wydarzeń":
+
+                    ConsoleHelper.PrintHeader("GENEROWANIE RAPORTÓW");
                     GeneratePopularityReport();
                     break;
-                case "4":
+                case "Powrót":
                     return;
-                default:
-                    ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                    break;
             }
-            Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować...");
+            AnsiConsole.MarkupLine("\n[pink1]Naciśnij dowolny klawisz, aby kontynuować...[/]");
             Console.ReadKey();
         }
     }
@@ -337,7 +368,6 @@ class Program
     {
         var reservations = _reservationService.GetAllReservations();
 
-        // Grupowanie po użytkownikach
         var userActivity = reservations
             .GroupBy(r => r.Username)
             .Select(g => new {
@@ -348,25 +378,33 @@ class Program
             .OrderByDescending(x => x.TotalReservations)
             .ToList();
 
-        Console.WriteLine($"{"Użytkownik",-20} {"Liczba rezerwacji",-18} {"Różnych wydarzeń",-18}");
-        Console.WriteLine(new string('=', 56));
+        var table = new Table();
+        table.AddColumn("[pink1]Użytkownik[/]");
+        table.AddColumn("[pink1]Liczba rezerwacji[/]");
+        table.AddColumn("[pink1]Różnych wydarzeń[/]");
 
         foreach (var user in userActivity)
         {
-            Console.WriteLine($"{user.Username,-20} {user.TotalReservations,-18} {user.EventsCount,-18}");
+            table.AddRow(user.Username, user.TotalReservations.ToString(), user.EventsCount.ToString());
         }
+
+        AnsiConsole.Write(table);
     }
 
     static void GenerateFinancialReport()
     {
-        ConsoleHelper.PrintHeader("RAPORT FINANSOWY");
+        var panel = new Panel("[bold hotpink2]RAPORT FINANSOWY[/]")
+            .BorderColor(Color.HotPink2);
+        AnsiConsole.Write(panel);
 
         var events = _eventService.GetAllEvents();
         var reservations = _reservationService.GetAllReservations();
 
         decimal totalRevenue = 0;
-        Console.WriteLine($"{"Nazwa wydarzenia",-40} {"Przychód",-15} {"Liczba rezerwacji",-20}");
-        Console.WriteLine(new string('=', 75));
+        var table = new Table();
+        table.AddColumn("[pink1]Nazwa wydarzenia[/]");
+        table.AddColumn("[pink1]Przychód[/]");
+        table.AddColumn("[pink1]Liczba rezerwacji[/]");
 
         foreach (var eventItem in events)
         {
@@ -374,15 +412,22 @@ class Program
             var eventRevenue = eventReservations.Count * eventItem.Price;
             totalRevenue += eventRevenue;
 
-            Console.WriteLine($"{eventItem.Name,-40} {eventRevenue.ToString("C"),-15} {eventReservations.Count,-20}");
+            table.AddRow(
+                eventItem.Name,
+                eventRevenue.ToString("C"),
+                eventReservations.Count.ToString()
+            );
         }
 
-        Console.WriteLine($"\nŁączny przychód: {totalRevenue.ToString("C")}");
+        AnsiConsole.Write(table);
+        AnsiConsole.MarkupLine($"[bold hotpink2]\nŁączny przychód:[/] [pink1]{totalRevenue.ToString("C")}[/]");
     }
 
     static void GeneratePopularityReport()
     {
-        ConsoleHelper.PrintHeader("RAPORT POPULARNOŚCI WYDARZEŃ");
+        var panel = new Panel("[bold hotpink2]RAPORT POPULARNOŚCI WYDARZEŃ[/]")
+            .BorderColor(Color.HotPink2);
+        AnsiConsole.Write(panel);
 
         var events = _eventService.GetAllEvents();
         var reservations = _reservationService.GetAllReservations();
@@ -396,18 +441,24 @@ class Program
             .OrderByDescending(x => x.ReservationsCount)
             .ToList();
 
-        Console.WriteLine($"{"Miejsce",-10} {"Nazwa wydarzenia",-40} {"Liczba rezerwacji",-20}");
-        Console.WriteLine(new string('=', 70));
+        var table = new Table();
+        table.AddColumn("[pink1]Miejsce[/]");
+        table.AddColumn("[pink1]Nazwa wydarzenia[/]");
+        table.AddColumn("[pink1]Liczba rezerwacji[/]");
 
         for (int i = 0; i < eventPopularity.Count; i++)
         {
-            Console.WriteLine($"{i + 1,-10} {eventPopularity[i].Event.Name,-40} {eventPopularity[i].ReservationsCount,-20}");
+            table.AddRow(
+                (i + 1).ToString(),
+                eventPopularity[i].Event.Name,
+                eventPopularity[i].ReservationsCount.ToString()
+            );
         }
+
+        AnsiConsole.Write(table);
     }
-        
 
-
-     static void ShowUserDashboard()
+    static void ShowUserDashboard()
     {
         if (_currentUser == null) return;
 
@@ -425,39 +476,41 @@ class Program
             }
             else if (_currentUser.Role == "User")
             {
-
-
+                AnsiConsole.Clear();
                 ConsoleHelper.PrintHeader("PANEL UŻYTKOWNIKA");
-                Console.WriteLine($"Witaj, {_currentUser.Username}!");
-                Console.WriteLine("1. Przeglądaj wydarzenia");
-                Console.WriteLine("2. Zarezerwuj wydarzenie");
-                Console.WriteLine("3. Moje rezerwacje");
-                Console.WriteLine("4. Anuluj rezerwację");
-                Console.WriteLine("5. Wyloguj się");
-                Console.Write("\nWybierz opcję: ");
+                var panel = new Panel($"[bold hotpink2]Witaj, {_currentUser.Username}![/]")
+                    .BorderColor(Color.HotPink2);
+                AnsiConsole.Write(panel);
 
-                switch (Console.ReadLine())
+                var choice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("[pink1]Wybierz opcję:[/]")
+                        .AddChoices(new[] {
+                            "Przeglądaj wydarzenia",
+                            "Zarezerwuj wydarzenie",
+                            "Moje rezerwacje",
+                            "Anuluj rezerwację",
+                            "Wyloguj się"
+                        }));
+
+                switch (choice)
                 {
-                    case "1":
+                    case "Przeglądaj wydarzenia":
                         _eventConsoleUI.DisplayAllEvents();
                         break;
-                    case "2":
+                    case "Zarezerwuj wydarzenie":
                         HandleReservation();
                         break;
-                    case "3":
+                    case "Moje rezerwacje":
                         _reservationService.ShowUserReservations(_currentUser.Username);
                         Console.ReadKey();
                         break;
-                    case "4":
+                    case "Anuluj rezerwację":
                         HandleCancellation();
                         break;
-                    case "5":
+                    case "Wyloguj się":
                         _currentUser = null;
                         return;
-                    default:
-                        ConsoleHelper.PrintError("Nieprawidłowy wybór.");
-                        Console.ReadKey();
-                        break;
                 }
             }
         }
@@ -466,36 +519,26 @@ class Program
     static void HandleReservation()
     {
         _eventConsoleUI.DisplayAllEvents(false);
-        Console.Write("\nPodaj ID wydarzenia do rezerwacji: ");
-        if (int.TryParse(Console.ReadLine(), out int eventId))
-        {
-            if (_reservationService.Reserve(_currentUser.Username, eventId))
-                ConsoleHelper.PrintSuccess("Rezerwacja zakończona sukcesem!");
-            else
-                ConsoleHelper.PrintError("Nie udało się zarezerwować.");
-        }
+        var eventId = AnsiConsole.Ask<int>("\n[pink1]Podaj ID wydarzenia do rezerwacji:[/] ");
+
+        if (_reservationService.Reserve(_currentUser.Username, eventId))
+            AnsiConsole.MarkupLine("[bold hotpink2]Rezerwacja zakończona sukcesem![/]");
         else
-        {
-            ConsoleHelper.PrintError("Nieprawidłowy format ID.");
-        }
+            AnsiConsole.MarkupLine("[bold red]Nie udało się zarezerwować.[/]");
+
         Console.ReadKey();
     }
 
     static void HandleCancellation()
     {
         _reservationService.ShowUserReservations(_currentUser.Username);
-        Console.Write("\nPodaj ID rezerwacji do anulowania: ");
-        if (int.TryParse(Console.ReadLine(), out int reservationId))
-        {
-            if (_reservationService.CancelReservation(reservationId, _currentUser.Username))
-                ConsoleHelper.PrintSuccess("Rezerwacja została anulowana!");
-            else
-                ConsoleHelper.PrintError("Nie udało się anulować rezerwacji.");
-        }
+        var reservationId = AnsiConsole.Ask<int>("\n[pink1]Podaj ID rezerwacji do anulowania:[/] ");
+
+        if (_reservationService.CancelReservation(reservationId, _currentUser.Username))
+            AnsiConsole.MarkupLine("[bold hotpink2]Rezerwacja została anulowana![/]");
         else
-        {
-            ConsoleHelper.PrintError("Nieprawidłowy format ID.");
-        }
+            AnsiConsole.MarkupLine("[bold red]Nie udało się anulować rezerwacji.[/]");
+
         Console.ReadKey();
     }
 }

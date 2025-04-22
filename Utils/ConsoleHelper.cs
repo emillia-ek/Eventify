@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 using System.Text;
 
 namespace Eventify.Utils
@@ -8,13 +9,11 @@ namespace Eventify.Utils
         public static void PrintHeader(string title)
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(new string('=', title.Length + 4));
-            Console.WriteLine($"  {title}  ");
-            Console.WriteLine(new string('=', title.Length + 4));
-            Console.ResetColor();
-            Console.WriteLine();
+
+            AnsiConsole.Write(new FigletText("Eventify").Centered().Color(Color.Pink1));
+            AnsiConsole.Write(new Rule($"[orchid1]{title}[/]").RuleStyle("deeppink4").Centered());
         }
+
 
         public static void PrintSuccess(string message)
         {
