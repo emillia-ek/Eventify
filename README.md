@@ -29,6 +29,7 @@ Otwórz terminal i przejdź do wypakowanego folderu projektu, np.:
 cd Eventify
 
 3. Budowanie aplikacji
+Zainstaluj pakiety: Spectre.Console, Figgle, System.Text.Json, następnie 
 Zbuduj projekt poleceniem:
 
 dotnet build
