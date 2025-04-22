@@ -1,0 +1,25 @@
+[
+    {
+      "Id": 1,
+      "Name": "Tech Future 2025",
+      "StartDate": "2025-06-15T09:00:00",
+      "EndDate": "2025-06-17T17:00:00",
+      "Location": "EXPO Kraków",
+      "Description": "Międzynarodowa konferencja o nowych technologiach i przyszłości cyfryzacji.",
+      "MaxParticipants": 1200,
+      "Price": 800.00,
+      "EventType": "Conference"
+    },
+    {
+      "Id": 2,
+      "Name": "Culinary Future 2025",
+      "StartDate": "2025-06-15T09:00:00",
+      "EndDate": "2025-06-17T17:00:00",
+      "Location": "EXPO Poznan",
+      "Description": "Międzynarodowa konferencja o nowym jedzeniu",
+      "MaxParticipants": 1200,
+      "Price": 500.00,
+      "EventType": "Conference"
+    }
+  ]
+  

@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "Id": 1,
+    "Username": "user",
+    "EventId": 1,
+    "ReservedAt": "2025-04-22T11:36:20.5112316+02:00",
+    "IsCancelled": false,
+    "CancelledAt": null
+  }
+]

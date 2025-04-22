@@ -7,4 +7,5 @@ log2025-04-22 11:36:07Z | LOGIN | user
 log2025-04-22 11:36:49Z | LOGIN | manager
 log2025-04-22 11:38:41Z | LOGIN | admin
 log2025-04-22 11:39:10Z | REGISTER | user1
+log2025-04-22 20:22:31Z | LOGIN | admin
 log
