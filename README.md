@@ -5,7 +5,7 @@
 
 ---
 
-## 🚀 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Why Eventify?](#why-eventify)
 - [Getting Started](#getting-started)
@@ -15,12 +15,12 @@
 
 ---
 
-## 📝 Overview
+## Overview
 **Eventify** is a powerful, open-source event management framework built with **.NET 9.0**, designed to streamline scalable, role-based scheduling applications. It offers a rich console interface and modular architecture supporting diverse event types and reservation workflows.  
 
 ---
 
-## 🌟 Why Eventify?
+## Why Eventify?
 Eventify simplifies complex event workflows while ensuring **secure, role-based access**.  
 
 ### Core Features
@@ -32,7 +32,7 @@ Eventify simplifies complex event workflows while ensuring **secure, role-based 
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Programming Language:** C#  
@@ -64,7 +64,7 @@ dotnet run
 
 ---
 
-## 🎯 Features
+## Features
 
 ### User Roles
 - **Admin**: Manage users, events, and generate reports.  
@@ -86,4 +86,4 @@ dotnet run
 
 ---
 
-[⬆ Back to top](#eventify)
+[⬆ Back to top](#table-of-contents)
