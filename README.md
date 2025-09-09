@@ -1,46 +1,89 @@
-# Eventify 
+<div align="center">
+  <h1 style="color:#db65ba;">🎉 EVENTIFY 🎉</h1>
+  <h3 style="color:#b04692;">Transforming Events Into Seamless Experiences</h3>
+</div>
 
-**Eventify** to konsolowa aplikacja do zarządzania wydarzeniami i rezerwacjami. Pozwala użytkownikom przeglądać wydarzenia, rezerwować miejsca, a menedżerom i administratorom — zarządzać wydarzeniami oraz użytkownikami.
+---
 
-## Funkcjonalności
+## 🚀 Table of Contents
+- [Overview](#overview)
+- [Why Eventify?](#why-eventify)
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Features](#features)
 
-- Rejestracja i logowanie użytkowników
-- Różne role: Użytkownik, Menedżer, Administrator
-- Przeglądanie dostępnych wydarzeń
-- Rezerwacja i anulowanie wydarzeń
-- Zarządzanie wydarzeniami (dodawanie, edytowanie, usuwanie)
-- Zarządzanie użytkownikami (tylko admin)
-- Generowanie prostych raportów (dla menedżerów/adminów)
+---
 
-## Wymagania systemowe
+## 📝 Overview
+**Eventify** is a powerful, open-source event management framework built with **.NET 9.0**, designed to streamline scalable, role-based scheduling applications. It offers a rich console interface and modular architecture supporting diverse event types and reservation workflows.  
 
-- .NET SDK 9.0
-- System operacyjny: Windows, macOS lub Linux
+---
 
-## Uruchomienie aplikacji
+## 🌟 Why Eventify?
+Eventify simplifies complex event workflows while ensuring **secure, role-based access**.  
 
-### 1. Pobranie projektu
+### Core Features
+- 🎯 **Role-Based Access Control**: Admins, Managers, and Users have specific permissions.  
+- 🗓️ **Event & Reservation Management**: Multiple event types with persistent tracking.  
+- 💻 **Console UI Utilities**: Styled, user-friendly command-line interactions.  
+- ⚙️ **Modular & Event-Driven Architecture**: Scalable, decoupled components for easy extension.  
+- 🔐 **Secure Authentication**: Password hashing and user management.
 
-Pobierz paczkę `.zip` z repozytorium lub strony projektu i wypakuj ją do wybranego katalogu.
+---
 
-### 2. Otwórz folder w terminalu
+## 🛠️ Getting Started
 
-Otwórz terminal i przejdź do wypakowanego folderu projektu, np.:
+### Prerequisites
+- **Programming Language:** C#  
+- **Environment:** .NET 9.0  
+- **Package Manager:** NuGet  
+- **Libraries:** Spectre.Console, Figgle, System.Text.Json
+
+---
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/emillia-ek/Eventify
+```
+2. Navigate to the project directory:
+```bash
 cd Eventify
-
-3. Budowanie aplikacji
-Zainstaluj pakiety: Spectre.Console, Figgle, System.Text.Json, następnie 
-Zbuduj projekt poleceniem:
-
+```
+3. Install dependencies:
+```bash
+dotnet restore
+```
+4. Build and run the project:
+```bash
 dotnet build
-
-5. Uruchomienie aplikacji
-Aby uruchomić aplikację, wpisz:
-
 dotnet run
+```
 
-Role i dostęp
+---
 
-Użytkownik – przegląda wydarzenia i dokonuje rezerwacji
-Menedżer – zarządza wydarzeniami, generuje raporty
-Administrator – pełny dostęp do użytkowników i wydarzeń
+## 🎯 Features
+
+### User Roles
+- **Admin**: Manage users, events, and generate reports.  
+- **Manager**: Manage events and generate reports.  
+- **Regular User**: Browse events, make/cancel reservations.
+
+### Event Management
+- Add, remove, edit events (Concerts, Conferences).  
+- Persistent storage in `events.json`.  
+
+### Reservations
+- Users can reserve or cancel spots.  
+- Stored in `reservations.json`.
+
+### Reports
+- **Participation Report**: Reservations per user.  
+- **Financial Report**: Revenue from events.  
+- **Popularity Report**: Most reserved events.
+
+---
+
+[⬆ Back to top](#eventify)
