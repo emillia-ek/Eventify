@@ -16,7 +16,7 @@
 ---
 
 ## Overview
-**Eventify** is a powerful, open-source event management framework built with **.NET 9.0**, designed to streamline scalable, role-based scheduling applications. It offers a rich console interface and modular architecture supporting diverse event types and reservation workflows.  
+**Eventify** is a event management framework built with **.NET 9.0**, designed to streamline scalable, role-based scheduling applications. It offers a rich console interface and modular architecture supporting diverse event types and reservation workflows.  
 
 ---
 
