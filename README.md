@@ -4,14 +4,20 @@
 
 ---
 Konsolowa aplikacja napisana w języku C# z wykorzystaniem platformy .NET 9.0, zaprojektowana zgodnie z zasadami programowania obiektowego (OOP).
+
+
 Program oferuje przyjazny dla użytkownika, intuicyjny interfejs tekstowy (menu), umożliwiający wykonywanie różnych operacji w zależności od roli użytkownika. System obsługuje logowanie, rejestrację nowych kont oraz autoryzację opartą na rolach (RBAC), wyróżniając trzy typy użytkowników: administrator, menedżer i użytkownik – każdy z dostępem do odrębnych funkcjonalności.
+
+
 W aplikacji można:
-przeglądać dostępne wydarzenia,
-rezerwować bilety na wybrane wydarzenia,
-anulować rezerwacje,
-(dla menedżerów i administratorów) dodawać nowe wydarzenia,
-(dla administratorów) przeglądać raporty dotyczące wydarzeń i rezerwacji.
+- przeglądać dostępne wydarzenia,
+- rezerwować bilety na wybrane wydarzenia,
+- anulować rezerwacje,
+- (dla menedżerów i administratorów) dodawać nowe wydarzenia,
+- (dla administratorów) przeglądać raporty dotyczące wydarzeń i rezerwacji.
 Całość została zaprojektowana z myślą o czytelności, modularności i łatwej rozbudowie
+
+---
 
 ## Features
 
@@ -35,4 +41,3 @@ Całość została zaprojektowana z myślą o czytelności, modularności i łat
 
 ---
 
-[⬆ Back to top](#table-of-contents)
