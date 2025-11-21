@@ -1,6 +1,7 @@
 <div align="center">
   <h1 style="color:#db65ba;">EVENTIFY</h1>
 </div>
+<img width="3533" height="2143" alt="eventify1" src="https://github.com/user-attachments/assets/b99bd804-2e8b-47fe-9b14-cffa64c2f9cd" />
 
 ---
 Konsolowa aplikacja napisana w języku C# z wykorzystaniem platformy .NET 9.0, zaprojektowana zgodnie z zasadami programowania obiektowego (OOP).
